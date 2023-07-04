@@ -1,12 +1,18 @@
 Name: api
 Host: 0.0.0.0
 Port: 8888
-#系统
+
 SystemRpc:
   Etcd:
     Hosts:
       - localhost:2379
     Key: system.rpc
+
+CouponRpc:
+  Etcd:
+    Hosts:
+      - localhost:2379
+    Key: coupon.rpc
 
 # mysql配置
 Mysql:

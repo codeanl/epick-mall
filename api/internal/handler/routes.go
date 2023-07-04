@@ -4,6 +4,7 @@ package handler
 import (
 	"net/http"
 
+	couponcoupon "epick-mall/api/internal/handler/coupon/coupon"
 	systemlog "epick-mall/api/internal/handler/system/log"
 	systemmenu "epick-mall/api/internal/handler/system/menu"
 	systemrole "epick-mall/api/internal/handler/system/role"
@@ -140,5 +141,32 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		},
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 		rest.WithPrefix("/api/system/loginLog"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/add",
+				Handler: couponcoupon.CouponAddHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/update",
+				Handler: couponcoupon.CouponUpdateHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/delete",
+				Handler: couponcoupon.CouponDeleteHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/list",
+				Handler: couponcoupon.CouponListHandler(serverCtx),
+			},
+		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/api/coupon/coupon"),
 	)
 }
