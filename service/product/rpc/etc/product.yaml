@@ -1,0 +1,13 @@
+Name: product.rpc
+ListenOn: 0.0.0.0:8080
+Etcd:
+  Hosts:
+  - 127.0.0.1:2379
+  Key: product.rpc
+# mysql配置
+Mysql:
+  DataSource: root:12345678@(127.0.0.1:3306)/epick-shop?charset=utf8mb4&parseTime=True&loc=Asia%2FShanghai
+
+JWT:
+  AccessSecret: ad879037-c7a4-4063-9236-6bfc35d54b7d
+  AccessExpire: 86400
