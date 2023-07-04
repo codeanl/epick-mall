@@ -1,0 +1,22 @@
+Name: api
+Host: 0.0.0.0
+Port: 8888
+#系统
+SystemRpc:
+  Etcd:
+    Hosts:
+      - localhost:2379
+    Key: system.rpc
+
+# mysql配置
+Mysql:
+  DataSource: root:12345678@(127.0.0.1:3306)/epick-shop?charset=utf8mb4&parseTime=True&loc=Asia%2FShanghai
+
+# redis 配置
+Redis:
+  Address: 127.0.0.1:6379
+  Pass:
+
+Auth:
+  AccessSecret: ad879037-c7a4-4063-9236-6bfc35d54b7d
+  AccessExpire: 86400
