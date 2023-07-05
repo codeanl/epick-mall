@@ -3,5 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/mall-admin-web" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/zero-admin-ui" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/zero-vue-admin" vcs="Git" />
   </component>
 </project>

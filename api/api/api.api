@@ -1,9 +1,4 @@
-import "system/user.api"
-import "system/role.api"
-import "system/menu.api"
-import "system/loginlog.api"
-
-import "coupon/coupon.api"
+import "sys/user.api"
 
 info(
 	title: "type title here"

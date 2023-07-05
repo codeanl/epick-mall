@@ -2,32 +2,30 @@
 package types
 
 type LoginReq struct {
-	Phone    string `json:"phone"`
+	Username string `json:"username"`
 	Password string `json:"password"`
 }
 
 type LoginResp struct {
-	Code         string `json:"code"`
-	Message      string `json:"message"`
-	ID           int64  `json:"id"`
-	Username     string `json:"username"`
-	Phone        string `json:"phone"`
-	Nickname     string `json:"nickname"`
-	Password     string `json:"password"`
-	Gender       int64  `json:"gender"`
-	Avatar       string `json:"avatar"`
-	Email        string `json:"email"`
-	Status       int64  `json:"status"`
-	AccessToken  string `json:"accessToken"`
-	AccessExpire int64  `json:"accessExpire"`
-	RefreshAfter int64  `json:"refreshAfter"`
+	Code             string `json:"code"`
+	Message          string `json:"message"`
+	ID               int64  `json:"id"`
+	Username         string `json:"username"`
+	Phone            string `json:"phone"`
+	Nickname         string `json:"nickname"`
+	Gender           int64  `json:"gender"`
+	Avatar           string `json:"avatar"`
+	Email            string `json:"email"`
+	Status           string `json:"status"`
+	CurrentAuthority string `json:"currentAuthority"`
+	AccessToken      string `json:"accessToken"`
+	AccessExpire     int64  `json:"accessExpire"`
+	RefreshAfter     int64  `json:"refreshAfter"`
 }
 
 type AddUserReq struct {
-	Username string `json:"username"`
 	Phone    string `json:"phone"`
 	Nickname string `json:"nickname"`
-	Password string `json:"password"`
 	Gender   int64  `json:"gender"`
 	Avatar   string `json:"avatar"`
 	Email    string `json:"email"`
@@ -137,294 +135,4 @@ type ListMenuTreeVue struct {
 type MenuTreeMeta struct {
 	Title string `json:"title"`
 	Icon  string `json:"icon"`
-}
-
-type AddRoleReq struct {
-	Name   string `json:"name"`
-	Remark string `json:"remark,optional"`
-}
-
-type AddRoleResp struct {
-	Code    string `json:"code"`
-	Message string `json:"message"`
-}
-
-type UpdateRoleReq struct {
-	Id     int64  `json:"id"`
-	Name   string `json:"name"`
-	Remark string `json:"remark"`
-}
-
-type UpdateRoleResp struct {
-	Code    string `json:"code"`
-	Message string `json:"message"`
-}
-
-type DeleteRoleReq struct {
-	Ids []int64 `json:"ids"`
-}
-
-type DeleteRoleResp struct {
-	Code    string `json:"code"`
-	Message string `json:"message"`
-}
-
-type ListRoleReq struct {
-	PageNum  int64  `json:"pageNum,default=1"`
-	PageSize int64  `json:"pageSize,default=20"`
-	Name     string `json:"name,optional "`
-}
-
-type ListRoleData struct {
-	Id             int64  `json:"id"`             // 编号
-	Name           string `json:"name"`           // 角色名称
-	Remark         string `json:"remark"`         // 备注
-	CreateBy       string `json:"createBy"`       // 创建人
-	CreateTime     string `json:"createTime"`     // 创建时间
-	LastUpdateBy   string `json:"lastUpdateBy"`   // 更新人
-	LastUpdateTime string `json:"lastUpdateTime"` // 更新时间
-}
-
-type ListRoleResp struct {
-	Code     string          `json:"code"`
-	Message  string          `json:"message"`
-	Total    int64           `json:"total"`
-	Data     []*ListRoleData `json:"data"`
-	PageNum  int64           `json:"pageNum,default=1"`
-	PageSize int64           `json:"pageSize,default=20"`
-}
-
-type RoleMenuReq struct {
-	Id int64 `json:"id,optional"`
-}
-
-type ListtMenuData struct {
-	Key      string `json:"key"`      // 菜单名称
-	Title    string `json:"title"`    // 菜单名称
-	ParentId int64  `json:"parentId"` // 父菜单ID，一级菜单为0
-	Id       int64  `json:"id"`       // 父菜单ID，一级菜单为0
-	Label    string `json:"label"`    // 父菜单ID，一级菜单为0
-}
-
-type RoleMenuResp struct {
-	RoleData []int64          `json:"roleData"`
-	AllData  []*ListtMenuData `json:"allData"`
-	Code     string           `json:"code"`
-	Message  string           `json:"message"`
-}
-
-type UpdateRoleMenuReq struct {
-	RoleId  int64   `json:"roleId"`
-	MenuIds []int64 `json:"menuIds"`
-}
-
-type UpdateRoleMenuResp struct {
-	Code    string `json:"code"`
-	Message string `json:"message"`
-}
-
-type AddMenuReq struct {
-	Name          string `json:"name"`                   // 菜单名称
-	ParentId      int64  `json:"parentId,optional"`      // 父菜单ID，一级菜单为0
-	Url           string `json:"url,optional"`           // 菜单URL,类型：1.普通页面（如用户管理， /sysmodel/user） 2.嵌套完整外部页面，以http(s)开头的链接 3.嵌套服务器页面，使用iframe:前缀+目标URL(如SQL监控， iframe:/druid/login.html, iframe:前缀会替换成服务器地址)
-	Perms         string `json:"perms,optional"`         // 授权(多个用逗号分隔，如：sysmodel:user:add,sysmodel:user:edit)
-	Type          int64  `json:"type,optional"`          // 类型   0：目录   1：菜单   2：按钮
-	Icon          string `json:"icon,optional"`          // 菜单图标
-	OrderNum      int64  `json:"orderNum,optional"`      // 排序
-	VuePath       string `json:"vuePath,optional"`       // vue系统的path
-	VueComponent  string `json:"vueComponent,optional"`  // vue的页面
-	VueIcon       string `json:"vueIcon,optional"`       // vue的图标
-	VueRedirect   string `json:"vueRedirect,optional"`   // vue的路由重定向
-	BackgroundUrl string `json:"backgroundUrl,optional"` // 后台地址
-}
-
-type AddMenuResp struct {
-	Code    string `json:"code"`
-	Message string `json:"message"`
-}
-
-type ListMenuReq struct {
-	Name string `json:"name,optional"`
-	Url  string `json:"url,optional "`
-}
-
-type ListMenuData struct {
-	Id             int64  `json:"id"`             // 编号
-	Name           string `json:"name"`           // 菜单名称
-	ParentId       int64  `json:"parentId"`       // 父菜单ID，一级菜单为0
-	Url            string `json:"url"`            // 菜单URL,类型：1.普通页面（如用户管理， /sysmodel/user） 2.嵌套完整外部页面，以http(s)开头的链接 3.嵌套服务器页面，使用iframe:前缀+目标URL(如SQL监控， iframe:/druid/login.html, iframe:前缀会替换成服务器地址)
-	Perms          string `json:"perms"`          // 授权(多个用逗号分隔，如：sysmodel:user:add,sysmodel:user:edit)
-	Type           int64  `json:"type"`           // 类型   0：目录   1：菜单   2：按钮
-	Icon           string `json:"icon"`           // 菜单图标
-	OrderNum       int64  `json:"orderNum"`       // 排序
-	CreateBy       string `json:"createBy"`       // 创建人
-	CreateTime     string `json:"createTime"`     // 创建时间
-	LastUpdateBy   string `json:"lastUpdateBy"`   // 更新人
-	LastUpdateTime string `json:"lastUpdateTime"` // 更新时间
-	VuePath        string `json:"vuePath"`        // vue系统的path
-	VueComponent   string `json:"vueComponent"`   // vue的页面
-	VueIcon        string `json:"vueIcon"`        // vue的图标
-	VueRedirect    string `json:"vueRedirect"`    // vue的路由重定向
-	BackgroundUrl  string `json:"backgroundUrl"`  // 后台地址
-}
-
-type ListMenuResp struct {
-	Code    string          `json:"code"`
-	Message string          `json:"message"`
-	Total   int64           `json:"total"`
-	Data    []*ListMenuData `json:"data"`
-}
-
-type UpdateMenuReq struct {
-	Id            int64  `json:"id"`                     // 编号
-	Name          string `json:"name"`                   // 菜单名称
-	ParentId      int64  `json:"parentId,default=0"`     // 父菜单ID，一级菜单为0
-	Url           string `json:"url,optional"`           // 菜单URL,类型：1.普通页面（如用户管理， /sysmodel/user） 2.嵌套完整外部页面，以http(s)开头的链接 3.嵌套服务器页面，使用iframe:前缀+目标URL(如SQL监控， iframe:/druid/login.html, iframe:前缀会替换成服务器地址)
-	Perms         string `json:"perms,optional"`         // 授权(多个用逗号分隔，如：sysmodel:user:add,sysmodel:user:edit)
-	Type          int64  `json:"type,optional"`          // 类型   0：目录   1：菜单   2：按钮
-	Icon          string `json:"icon,optional"`          // 菜单图标
-	OrderNum      int64  `json:"orderNum,optional"`      // 排序
-	VuePath       string `json:"vuePath,optional"`       // vue系统的path
-	VueComponent  string `json:"vueComponent,optional"`  // vue的页面
-	VueIcon       string `json:"vueIcon,optional"`       // vue的图标
-	VueRedirect   string `json:"vueRedirect,optional"`   // vue的路由重定向
-	BackgroundUrl string `json:"backgroundUrl,optional"` // 后台地址
-}
-
-type UpdateMenuResp struct {
-	Code    string `json:"code"`
-	Message string `json:"message"`
-}
-
-type DeleteMenuReq struct {
-	Ids []int64 `json:"ids"`
-}
-
-type DeleteMenuResp struct {
-	Code    string `json:"code"`
-	Message string `json:"message"`
-}
-
-type ListLoginLogReq struct {
-	PageNum  int64  `json:"pageNum,default=1"`
-	PageSize int64  `json:"pageSize,default=20"`
-	Phone    string `json:"phone,optional"`
-	Ip       string `json:"ip,optional"` // IP地址
-}
-
-type ListLoginLogData struct {
-	Id         int64  `json:"id"`         // 编号
-	Phone      string `json:"Phone"`      // 用户名
-	Status     string `json:"status"`     // 登录状态（online:在线，登录初始状态，方便统计在线人数；login:退出登录后将online置为login；logout:退出登录）
-	Ip         string `json:"ip"`         // IP地址
-	CreateTime string `json:"createTime"` // 创建时间
-}
-
-type ListLoginLogResp struct {
-	Code     string              `json:"code"`
-	Message  string              `json:"message"`
-	Total    int64               `json:"total"`
-	Data     []*ListLoginLogData `json:"data"`
-	PageNum  int64               `json:"pageNum,default=1"`
-	PageSize int64               `json:"pageSize,default=20"`
-}
-
-type DeleteLoginLogReq struct {
-	Ids []int64 `json:"ids"`
-}
-
-type DeleteLoginLogResp struct {
-	Code    string `json:"code"`
-	Message string `json:"message"`
-}
-
-type AddCouponReq struct {
-	Type       int64   `json:"type"` // 优惠券类型；0->全场赠券；1->会员赠券；2->购物赠券；3->注册赠券
-	Name       string  `json:"name"`
-	Platform   int64   `json:"platform"` // 使用平台：0->全部；1->移动；2->PC
-	Count      int64   `json:"count"`    // 数量
-	Amount     float64 `json:"amount"`   // 金额
-	PerLimit   int64   `json:"perLimit"` // 每人限领张数
-	MinPoint   float64 `json:"minPoint"` // 使用门槛；0表示无门槛
-	StartTime  string  `json:"startTime"`
-	EndTime    string  `json:"endTime"`
-	UseType    int64   `json:"useType"`    // 使用类型：0->全场通用；1->指定分类；2->指定商品
-	Note       string  `json:"note"`       // 备注
-	EnableTime string  `json:"enableTime"` // 可以领取的日期
-	Code       string  `json:"code"`       // 优惠码
-}
-
-type AddCouponResp struct {
-	Code    string `json:"code"`
-	Message string `json:"message"`
-}
-
-type UpdateCouponReq struct {
-	Id         int64   `json:"id"`
-	Type       int64   `json:"type"` // 优惠券类型；0->全场赠券；1->会员赠券；2->购物赠券；3->注册赠券
-	Name       string  `json:"name"`
-	Platform   int64   `json:"platform"` // 使用平台：0->全部；1->移动；2->PC
-	Count      int64   `json:"count"`    // 数量
-	Amount     float64 `json:"amount"`   // 金额
-	PerLimit   int64   `json:"perLimit"` // 每人限领张数
-	MinPoint   float64 `json:"minPoint"` // 使用门槛；0表示无门槛
-	StartTime  string  `json:"startTime"`
-	EndTime    string  `json:"endTime"`
-	UseType    int64   `json:"useType"`    // 使用类型：0->全场通用；1->指定分类；2->指定商品
-	Note       string  `json:"note"`       // 备注
-	EnableTime string  `json:"enableTime"` // 可以领取的日期
-	Code       string  `json:"code"`       // 优惠码
-}
-
-type UpdateCouponResp struct {
-	Code    string `json:"code"`
-	Message string `json:"message"`
-}
-
-type DeleteCouponReq struct {
-	Ids []int64 `json:"ids"`
-}
-
-type DeleteCouponResp struct {
-	Code    string `json:"code"`
-	Message string `json:"message"`
-}
-
-type ListCouponReq struct {
-	PageNum   int64  `json:"pageNum,default=1"`
-	PageSize  int64  `json:"pageSize,default=20"`
-	Type      int64  `json:"type,default=4"` // 优惠券类型；0->全场赠券；1->会员赠券；2->购物赠券；3->注册赠券
-	Name      string `json:"name,optional"`
-	Platform  int64  `json:"platform,default=3"` // 使用平台：0->全部；1->移动；2->PC
-	StartTime string `json:"startTime,optional"`
-	EndTime   string `json:"endTime,optional"`
-	UseType   int64  `json:"useType,default=3"` // 使用类型：0->全场通用；1->指定分类；2->指定商品
-}
-
-type ListCouponData struct {
-	Id           int64   `json:"id"`
-	Type         int64   `json:"type"` // 优惠券类型；0->全场赠券；1->会员赠券；2->购物赠券；3->注册赠券
-	Name         string  `json:"name"`
-	Platform     int64   `json:"platform"` // 使用平台：0->全部；1->移动；2->PC
-	Count        int64   `json:"count"`    // 数量
-	Amount       float64 `json:"amount"`   // 金额
-	PerLimit     int64   `json:"perLimit"` // 每人限领张数
-	MinPoint     float64 `json:"minPoint"` // 使用门槛；0表示无门槛
-	StartTime    string  `json:"startTime"`
-	EndTime      string  `json:"endTime"`
-	UseType      int64   `json:"useType"`      // 使用类型：0->全场通用；1->指定分类；2->指定商品
-	Note         string  `json:"note"`         // 备注
-	UseCount     int64   `json:"useCount"`     // 已使用数量
-	ReceiveCount int64   `json:"receiveCount"` // 领取数量
-	EnableTime   string  `json:"enableTime"`   // 可以领取的日期
-	Code         string  `json:"code"`         // 优惠码
-}
-
-type ListCouponResp struct {
-	Code     string            `json:"code"`
-	Message  string            `json:"message"`
-	Total    int64             `json:"total"`
-	Data     []*ListCouponData `json:"data"`
-	PageNum  int64             `json:"pageNum,default=1"`
-	PageSize int64             `json:"pageSize,default=20"`
 }
