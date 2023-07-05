@@ -35,10 +35,10 @@ func (l *UserAddLogic) UserAdd(in *sys.UserAddReq) (*sys.UserAddResp, error) {
 		Phone:    in.Phone,
 		Nickname: in.Nickname,
 		Password: in.Password,
-		Gender:   int(in.Gender),
+		Gender:   in.Gender,
 		Avatar:   in.Avatar,
 		Email:    in.Email,
-		Status:   int(in.Status),
+		Status:   in.Status,
 	}
 	err := l.svcCtx.UserModel.AddUser(user)
 	if err != nil {

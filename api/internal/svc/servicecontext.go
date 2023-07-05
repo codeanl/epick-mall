@@ -2,8 +2,10 @@ package svc
 
 import (
 	"epick-mall/api/internal/config"
+	"epick-mall/api/middleware"
 	"epick-mall/service/sys/rpc/sysclient"
 	"github.com/zeromicro/go-zero/core/stores/redis"
+	"github.com/zeromicro/go-zero/rest"
 	"github.com/zeromicro/go-zero/zrpc"
 )
 
@@ -11,6 +13,7 @@ type ServiceContext struct {
 	Config config.Config
 	Sys    sysclient.Sys
 	Redis  *redis.Redis
+	AddLog rest.Middleware
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
@@ -18,6 +21,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	return &ServiceContext{
 		Config: c,
 		Sys:    sysclient.NewSys(zrpc.MustNewClient(c.SysRpc)),
+		AddLog: middleware.NewAddLogMiddleware(sysclient.NewSys(zrpc.MustNewClient(c.SysRpc))).Handle,
 		Redis:  newRedis,
 	}
 }

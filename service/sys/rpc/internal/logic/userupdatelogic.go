@@ -30,10 +30,9 @@ func (l *UserUpdateLogic) UserUpdate(in *sys.UserUpdateReq) (*sys.UserUpdateResp
 		Username: in.Username,
 		Phone:    in.Phone,
 		Nickname: in.Nickname,
-		Gender:   int(in.Gender),
-		Avatar:   in.Avatar,
+		Gender:   in.Gender,
 		Email:    in.Email,
-		Status:   int(in.Status),
+		Status:   in.Status,
 	})
 	if err != nil {
 		return nil, errors.New("更新用户失败")
@@ -41,11 +40,19 @@ func (l *UserUpdateLogic) UserUpdate(in *sys.UserUpdateReq) (*sys.UserUpdateResp
 	if err != nil {
 		return nil, errors.New("删除用户角色失败")
 	}
-	err = l.svcCtx.UserRoleModel.UpdateUserRole(&model.UserRole{
-		UserID:     int(in.Id),
-		RoleID:     int(in.RoleId),
-		LastEditBy: in.LastEditBy,
-	})
+	userrole, err := l.svcCtx.UserRoleModel.GetUserRoleByUserID(in.Id)
+	if in.RoleId != int64(userrole.RoleID) {
+		if in.RoleId == 0 {
+			err = l.svcCtx.UserRoleModel.DeleteByUserID(in.Id)
+		} else {
+			err = l.svcCtx.UserRoleModel.DeleteByUserID(in.Id)
+			err = l.svcCtx.UserRoleModel.AddUserRole(&model.UserRole{
+				UserID:     int(in.Id),
+				RoleID:     int(in.RoleId),
+				LastEditBy: in.LastEditBy,
+			})
+		}
+	}
 	if err != nil {
 		return nil, errors.New("修改用户角色失败")
 	}

@@ -13,7 +13,7 @@ message LoginResp {
   string username =2;
   string phone = 3;
   string nickname = 4;
-  int64 gender =5;
+  string gender =5;
   string avatar = 6;
   string email = 7;
   string status=8;
@@ -52,10 +52,10 @@ message UserAddReq {
   string username = 1;
   string phone = 2;
   string nickname = 3;
-  int64 gender =4;
+  string gender =4;
   string avatar = 5;
   string email = 6;
-  int64 status = 7;
+  string status = 7;
   int64 role_id=8;
   string password =9;
   string last_edit_by=10;
@@ -70,10 +70,9 @@ message UserUpdateReq {
   string username = 2;
   string phone = 3;
   string nickname = 4;
-  int64 gender =5;
-  string avatar = 6;
+  string gender =5;
   string email = 7;
-  int64 status = 8;
+  string status = 8;
   int64 role_id=9;
   string last_edit_by=10;
 }
@@ -96,20 +95,22 @@ message UserListReq {
   string nickname = 3;
   string phone = 4;
   string email = 5;
-  int64 status = 6;
-  int64 gender = 7;
+  string status = 6;
+  string gender = 7;
 }
 message UserList{
   int64 id = 1;
   string username = 2;
   string phone = 3;
   string nickname = 4;
-  int64 gender = 5;
+  string gender = 5;
   string avatar = 6;
   string email = 7;
-  int64 status = 8;
+  string status = 8;
   string creat_time = 9;
   string update_time = 10;
+  int64 role_id = 11;
+  string role_name=12;
 }
 message UserListResp {
   int64 total = 1;
@@ -207,8 +208,209 @@ message MenuDeleteResp {
   string pong = 1;
 }
 //删除菜单------------------------------------------
+//添加角色 ------------------------------------------
+message RoleAddReq {
+  string name = 1;
+  string remark = 2;
+  string create_by = 3;
+}
+message RoleAddResp {
+  string pong = 1;
+}
+//添加角色 ------------------------------------------
+//角色修改 ------------------------------------------
+message RoleUpdateReq {
+  int64 id = 1;
+  string name = 2;
+  string remark = 3;
+  string update_by = 4;
+}
+message RoleUpdateResp {
+  string pong = 1;
+}
+//角色修改 ------------------------------------------
+//删除角色------------------------------------------
+message RoleDeleteReq {
+  repeated int64 ids = 1;
+}
 
+message RoleDeleteResp {
+  string pong = 1;
+}
+//删除角色------------------------------------------
+//角色列表------------------------------------------
+message RoleListReq {
+  int64 pageNum = 1;
+  int64 pageSize = 2;
+  string name = 3;
+}
+message RoleListData {
+  int64 id = 1;
+  string name = 2;
+  string remark = 3;
+  string create_by = 4;
+  string create_time = 5;
+  string last_update_by = 6;
+  string last_update_time = 7;
+}
 
+message RoleListResp {
+  int64 total = 1;
+  repeated  RoleListData list = 2;
+}
+//角色列表------------------------------------------
+//------------------------------------------
+message QueryMenuByRoleIdReq {
+  int64 id = 1;
+}
+message QueryMenuByRoleIdResp {
+  repeated int64 ids = 1;
+}
+//------------------------------------------
+//------------------------------------------
+message UpdateMenuRoleReq {
+  int64 roleId = 1;
+  repeated int64 menuIds = 2;
+  string create_by = 3;
+}
+
+message UpdateMenuRoleResp {
+  string pong = 1;
+}
+//------------------------------------------
+//登录日志------------------------------------------
+message LoginLogAddReq {
+  string username = 1;
+  string status = 2;
+  string ip = 3;
+}
+message LoginLogAddResp {
+  string pong = 1;
+}
+//登录日志------------------------------------------
+//登录日志列表------------------------------------------
+message LoginLogListReq {
+  int64 pageNum = 1;
+  int64 pageSize = 2;
+  string username = 3;
+  string ip = 4;
+}
+message LoginLogListData {
+  int64 id = 1;
+  string username = 2;
+  string status = 3;
+  string ip = 4;
+  string create_time = 6;
+  string avatar =7;
+}
+message LoginLogListResp{
+  int64 total = 1;
+  repeated  LoginLogListData list = 2;
+}
+//登录日志列表------------------------------------------
+//删除登录日志------------------------------------------
+message LoginLogDeleteReq {
+  repeated int64 ids = 1;
+}
+
+message LoginLogDeleteResp {
+  string pong = 1;
+}
+//删除登录日志------------------------------------------
+//操作日志------------------------------------------
+message LogAddReq {
+  string Username = 1;
+  string operation = 2;
+  string method = 3;
+  string params = 4;
+  int64 time = 5;
+  string ip = 6;
+}
+message LogAddResp {
+  string pong = 1;
+}
+//操作日志------------------------------------------
+message SysLogListReq {
+  int64 pageNum = 1;
+  int64 pageSize = 2;
+  string username = 3;
+  string method = 4;
+}
+
+message SysLogListData {
+  int64 id = 1;
+  string username = 2;
+  string operation = 3;
+  string method = 4;
+  string params = 5;
+  int64 time = 6;
+  string ip = 7;
+  string create_time = 9;
+    string avatar =10;
+}
+
+message SysLogListResp{
+  int64 total = 1;
+  repeated  SysLogListData list = 2;
+}
+message SysLogDeleteReq {
+  repeated int64 ids = 1;
+}
+
+message SysLogDeleteResp {
+  string pong = 1;
+}
+message PlaceAddReq {
+  string name = 1;
+  string place = 2;
+  string status = 3;
+  string pic = 4;
+  string phone = 5;
+  string principal = 6;
+}
+message PlaceAddResp {
+  string pong = 1;
+}
+message PlaceListReq {
+  string name = 1;
+  string place = 2;
+  string phone = 3;
+  int64 pageNum = 4;
+  int64 pageSize = 5;
+}
+
+message PlaceListData {
+  int64 id = 1;
+  string name = 2;
+  string place = 3;
+  string status = 4;
+  string pic = 5;
+  string phone = 6;
+  string principal = 7;
+}
+message PlaceListResp{
+  int64 total = 1;
+  repeated  PlaceListData list = 2;
+}
+message PlaceUpdateReq {
+  int64 id = 1;
+  string name = 2;
+  string place = 3;
+  string status = 4;
+  string pic = 5;
+  string phone = 6;
+  string principal = 7;
+}
+message PlaceUpdateResp {
+  string pong = 1;
+}
+
+message PlaceDeleteReq {
+  repeated int64 ids = 1;
+}
+message PlaceDeleteResp {
+  string pong = 1;
+}
 
 service Sys{
   rpc Login(LoginReq) returns(LoginResp);
@@ -219,10 +421,28 @@ service Sys{
   rpc UserList(UserListReq) returns(UserListResp);
   rpc ResetPassword(ResetPasswordReq) returns(ResetPasswordResp);
 
-
+  rpc RoleAdd(RoleAddReq) returns(RoleAddResp);
+  rpc RoleUpdate(RoleUpdateReq) returns(RoleUpdateResp);
+  rpc RoleDelete(RoleDeleteReq) returns(RoleDeleteResp);
+  rpc RoleList(RoleListReq) returns(RoleListResp);
+  rpc QueryMenuByRoleId(QueryMenuByRoleIdReq) returns(QueryMenuByRoleIdResp);
+  rpc UpdateMenuRole(UpdateMenuRoleReq) returns(UpdateMenuRoleResp);
 
   rpc MenuAdd(MenuAddReq) returns(MenuAddResp);
   rpc MenuList(MenuListReq) returns(MenuListResp);
   rpc MenuUpdate(MenuUpdateReq) returns(MenuUpdateResp);
   rpc MenuDelete(MenuDeleteReq) returns(MenuDeleteResp);
+
+  rpc LoginLogAdd(LoginLogAddReq) returns(LoginLogAddResp);
+  rpc LoginLogList(LoginLogListReq) returns(LoginLogListResp);
+  rpc LoginLogDelete(LoginLogDeleteReq) returns(LoginLogDeleteResp);
+
+  rpc LogAdd(LogAddReq) returns(LogAddResp);
+  rpc SysLogList(SysLogListReq) returns(SysLogListResp);
+  rpc SysLogDelete(SysLogDeleteReq) returns(SysLogDeleteResp);
+
+  rpc PlaceAdd(PlaceAddReq) returns(PlaceAddResp);
+  rpc PlaceList(PlaceListReq) returns(PlaceListResp);
+  rpc PlaceUpdate(PlaceUpdateReq) returns(PlaceUpdateResp);
+  rpc PlaceDelete(PlaceDeleteReq) returns(PlaceDeleteResp);
 }

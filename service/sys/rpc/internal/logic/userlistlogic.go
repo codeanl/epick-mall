@@ -30,23 +30,24 @@ func (l *UserListLogic) UserList(in *sys.UserListReq) (*sys.UserListResp, error)
 	}
 	var list []*sys.UserList
 	for _, user := range all {
+		roleinfo, _ := l.svcCtx.RoleModel.GetRoleInfoByUserID(int64(user.ID))
 		list = append(list, &sys.UserList{
 			Id:         int64(user.ID),
 			Username:   user.Username,
 			Phone:      user.Phone,
 			Nickname:   user.Nickname,
-			Gender:     int64(user.Gender),
+			Gender:     user.Gender,
 			Avatar:     user.Avatar,
 			Email:      user.Email,
-			Status:     int64(user.Status),
+			Status:     user.Status,
 			CreatTime:  user.CreatedAt.Format("2006-01-02 15:04:05"),
 			UpdateTime: user.UpdatedAt.Format("2006-01-02 15:04:05"),
+			RoleId:     int64(roleinfo.ID),
+			RoleName:   roleinfo.Name,
 		})
 	}
-
 	return &sys.UserListResp{
 		Total: total,
 		List:  list,
 	}, nil
-
 }

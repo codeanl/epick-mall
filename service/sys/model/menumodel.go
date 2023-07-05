@@ -9,10 +9,10 @@ import (
 type (
 	MenuModel interface {
 		AddMenu(menu *Menu) (err error)
-		GetMenuList(in *sys.MenuListReq) ([]*Menu, int64, error)
+		GetMenuList(in *sys.MenuListReq) ([]Menu, int64, error)
 		UpdateMenu(id int64, menu *Menu) error
 		DeleteMenuByIds(ids []int64) error
-		GetMenusByUserID(userID int64) ([]sys.MenuListData, error)
+		GetMenusByUserID(userID int64) ([]Menu, error)
 	}
 
 	defaultMenuModel struct {
@@ -21,10 +21,10 @@ type (
 	Menu struct {
 		gorm.Model
 		Name          string `json:"name" gorm:"type:varchar(191);comment:菜单名称;not null"`              //菜单名称
-		ParentID      int    `json:"parent_id" gorm:"type:int;comment:父菜单ID;not null;default:0"`       //父菜单ID
+		ParentID      int    `json:"parent_id" gorm:"type:int;comment:父菜单ID;not null;"`                //父菜单ID
 		Url           string `json:"url" gorm:"type:varchar(191);comment:路径;not null"`                 //路径
 		Perms         string `json:"perms" gorm:"type:varchar(191);comment:授权;not null"`               //授权(多个用逗号分隔，如：sys:user:add,sys:user:edit)
-		Type          int    `json:"type" gorm:"type:int;comment:类型;not null"`                         //类型  0：目录   1：菜单   2：按钮',
+		Type          int    `json:"type" gorm:"type:int;comment:类型;not null"`                         //类型  1：目录  2：菜单   3：按钮',
 		Icon          string `json:"icon" gorm:"type:varchar(191);comment:菜单图标;not null"`              //菜单图标
 		OrderNum      int    `json:"order_num" gorm:"type:int;comment:排序;not null"`                    //排序
 		CreateBy      string `json:"create_by" gorm:"type:varchar(191);comment:创建人;not null"`          //创建人
@@ -47,8 +47,8 @@ func NewMenuModel(conn *gorm.DB) MenuModel {
 func (m *defaultMenuModel) AddMenu(menu *Menu) (err error) {
 	return m.conn.Model(&Menu{}).Create(menu).Error
 }
-func (m *defaultMenuModel) GetMenuList(in *sys.MenuListReq) ([]*Menu, int64, error) {
-	var list []*Menu
+func (m *defaultMenuModel) GetMenuList(in *sys.MenuListReq) ([]Menu, int64, error) {
+	var list []Menu
 	db := m.conn.Model(&Menu{}).Order("created_at DESC")
 	if in.Name != "" {
 		db = db.Where("name LIKE ?", fmt.Sprintf("%%%s%%", in.Name))
@@ -75,7 +75,7 @@ func (m *defaultMenuModel) DeleteMenuByIds(ids []int64) error {
 	err := m.conn.Where(id).Delete(&Menu{}).Error
 	return err
 }
-func (m *defaultMenuModel) GetMenusByUserID(userID int64) ([]sys.MenuListData, error) {
+func (m *defaultMenuModel) GetMenusByUserID(userID int64) ([]Menu, error) {
 	var userrole UserRole
 	if err := m.conn.Model(&UserRole{}).Where("user_id=?", userID).First(&userrole).Error; err != nil {
 		return nil, err
@@ -92,7 +92,7 @@ func (m *defaultMenuModel) GetMenusByUserID(userID int64) ([]sys.MenuListData, e
 	for _, rm := range roleMenus {
 		menuIDs = append(menuIDs, uint(rm.MenuID))
 	}
-	var menus []sys.MenuListData
+	var menus []Menu
 	if err := m.conn.Model(&Menu{}).Where("id IN (?)", menuIDs).Find(&menus).Error; err != nil {
 		return nil, err
 	}

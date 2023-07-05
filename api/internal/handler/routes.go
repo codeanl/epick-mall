@@ -4,6 +4,11 @@ package handler
 import (
 	"net/http"
 
+	syslog "epick-mall/api/internal/handler/sys/log"
+	sysloginlog "epick-mall/api/internal/handler/sys/loginlog"
+	sysmenu "epick-mall/api/internal/handler/sys/menu"
+	sysplace "epick-mall/api/internal/handler/sys/place"
+	sysrole "epick-mall/api/internal/handler/sys/role"
 	sysuser "epick-mall/api/internal/handler/sys/user"
 	"epick-mall/api/internal/svc"
 
@@ -53,8 +58,138 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/resetpassword",
 				Handler: sysuser.ResetPasswordHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/selectAllData",
+				Handler: sysuser.SelectAllDataHandler(serverCtx),
+			},
 		},
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 		rest.WithPrefix("/api/sys/user"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/add",
+				Handler: sysmenu.MenuAddHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/list",
+				Handler: sysmenu.MenuListHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/update",
+				Handler: sysmenu.MenuUpdateHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/delete",
+				Handler: sysmenu.MenuDeleteHandler(serverCtx),
+			},
+		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/api/sys/menu"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/add",
+				Handler: sysrole.RoleAddHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/update",
+				Handler: sysrole.RoleUpdateHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/delete",
+				Handler: sysrole.RoleDeleteHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/list",
+				Handler: sysrole.RoleListHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/queryMenuByRoleId",
+				Handler: sysrole.QueryMenuByRoleIdHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/updateRoleMenu",
+				Handler: sysrole.UpdateRoleMenuHandler(serverCtx),
+			},
+		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/api/sys/role"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/list",
+				Handler: sysloginlog.LoginLogListHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/delete",
+				Handler: sysloginlog.LoginLogDeleteHandler(serverCtx),
+			},
+		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/api/sys/loginLog"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/list",
+				Handler: syslog.SysLogListHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/delete",
+				Handler: syslog.SysLogDeleteHandler(serverCtx),
+			},
+		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/api/sys/sysLog"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/add",
+				Handler: sysplace.PlaceAddHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/update",
+				Handler: sysplace.PlaceUpdateHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/delete",
+				Handler: sysplace.PlaceDeleteHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/list",
+				Handler: sysplace.PlaceListHandler(serverCtx),
+			},
+		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/api/sys/place"),
 	)
 }

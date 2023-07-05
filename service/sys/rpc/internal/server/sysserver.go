@@ -57,6 +57,36 @@ func (s *SysServer) ResetPassword(ctx context.Context, in *sys.ResetPasswordReq)
 	return l.ResetPassword(in)
 }
 
+func (s *SysServer) RoleAdd(ctx context.Context, in *sys.RoleAddReq) (*sys.RoleAddResp, error) {
+	l := logic.NewRoleAddLogic(ctx, s.svcCtx)
+	return l.RoleAdd(in)
+}
+
+func (s *SysServer) RoleUpdate(ctx context.Context, in *sys.RoleUpdateReq) (*sys.RoleUpdateResp, error) {
+	l := logic.NewRoleUpdateLogic(ctx, s.svcCtx)
+	return l.RoleUpdate(in)
+}
+
+func (s *SysServer) RoleDelete(ctx context.Context, in *sys.RoleDeleteReq) (*sys.RoleDeleteResp, error) {
+	l := logic.NewRoleDeleteLogic(ctx, s.svcCtx)
+	return l.RoleDelete(in)
+}
+
+func (s *SysServer) RoleList(ctx context.Context, in *sys.RoleListReq) (*sys.RoleListResp, error) {
+	l := logic.NewRoleListLogic(ctx, s.svcCtx)
+	return l.RoleList(in)
+}
+
+func (s *SysServer) QueryMenuByRoleId(ctx context.Context, in *sys.QueryMenuByRoleIdReq) (*sys.QueryMenuByRoleIdResp, error) {
+	l := logic.NewQueryMenuByRoleIdLogic(ctx, s.svcCtx)
+	return l.QueryMenuByRoleId(in)
+}
+
+func (s *SysServer) UpdateMenuRole(ctx context.Context, in *sys.UpdateMenuRoleReq) (*sys.UpdateMenuRoleResp, error) {
+	l := logic.NewUpdateMenuRoleLogic(ctx, s.svcCtx)
+	return l.UpdateMenuRole(in)
+}
+
 func (s *SysServer) MenuAdd(ctx context.Context, in *sys.MenuAddReq) (*sys.MenuAddResp, error) {
 	l := logic.NewMenuAddLogic(ctx, s.svcCtx)
 	return l.MenuAdd(in)
@@ -75,4 +105,54 @@ func (s *SysServer) MenuUpdate(ctx context.Context, in *sys.MenuUpdateReq) (*sys
 func (s *SysServer) MenuDelete(ctx context.Context, in *sys.MenuDeleteReq) (*sys.MenuDeleteResp, error) {
 	l := logic.NewMenuDeleteLogic(ctx, s.svcCtx)
 	return l.MenuDelete(in)
+}
+
+func (s *SysServer) LoginLogAdd(ctx context.Context, in *sys.LoginLogAddReq) (*sys.LoginLogAddResp, error) {
+	l := logic.NewLoginLogAddLogic(ctx, s.svcCtx)
+	return l.LoginLogAdd(in)
+}
+
+func (s *SysServer) LoginLogList(ctx context.Context, in *sys.LoginLogListReq) (*sys.LoginLogListResp, error) {
+	l := logic.NewLoginLogListLogic(ctx, s.svcCtx)
+	return l.LoginLogList(in)
+}
+
+func (s *SysServer) LoginLogDelete(ctx context.Context, in *sys.LoginLogDeleteReq) (*sys.LoginLogDeleteResp, error) {
+	l := logic.NewLoginLogDeleteLogic(ctx, s.svcCtx)
+	return l.LoginLogDelete(in)
+}
+
+func (s *SysServer) LogAdd(ctx context.Context, in *sys.LogAddReq) (*sys.LogAddResp, error) {
+	l := logic.NewLogAddLogic(ctx, s.svcCtx)
+	return l.LogAdd(in)
+}
+
+func (s *SysServer) SysLogList(ctx context.Context, in *sys.SysLogListReq) (*sys.SysLogListResp, error) {
+	l := logic.NewSysLogListLogic(ctx, s.svcCtx)
+	return l.SysLogList(in)
+}
+
+func (s *SysServer) SysLogDelete(ctx context.Context, in *sys.SysLogDeleteReq) (*sys.SysLogDeleteResp, error) {
+	l := logic.NewSysLogDeleteLogic(ctx, s.svcCtx)
+	return l.SysLogDelete(in)
+}
+
+func (s *SysServer) PlaceAdd(ctx context.Context, in *sys.PlaceAddReq) (*sys.PlaceAddResp, error) {
+	l := logic.NewPlaceAddLogic(ctx, s.svcCtx)
+	return l.PlaceAdd(in)
+}
+
+func (s *SysServer) PlaceList(ctx context.Context, in *sys.PlaceListReq) (*sys.PlaceListResp, error) {
+	l := logic.NewPlaceListLogic(ctx, s.svcCtx)
+	return l.PlaceList(in)
+}
+
+func (s *SysServer) PlaceUpdate(ctx context.Context, in *sys.PlaceUpdateReq) (*sys.PlaceUpdateResp, error) {
+	l := logic.NewPlaceUpdateLogic(ctx, s.svcCtx)
+	return l.PlaceUpdate(in)
+}
+
+func (s *SysServer) PlaceDelete(ctx context.Context, in *sys.PlaceDeleteReq) (*sys.PlaceDeleteResp, error) {
+	l := logic.NewPlaceDeleteLogic(ctx, s.svcCtx)
+	return l.PlaceDelete(in)
 }

@@ -1,4 +1,9 @@
 import "sys/user.api"
+import "sys/menu.api"
+import "sys/role.api"
+import "sys/loginlog.api"
+import "sys/log.api"
+import "sys/place.api"
 
 info(
 	title: "type title here"

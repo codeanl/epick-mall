@@ -25,7 +25,7 @@ func NewUserLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UserLog
 	}
 }
 
-func (l *UserLoginLogic) UserLogin(req *types.LoginReq) (*types.LoginResp, error) {
+func (l *UserLoginLogic) UserLogin(req *types.LoginReq, ip string) (*types.LoginResp, error) {
 	if len(req.Username) == 0 || len(req.Password) == 0 {
 		return nil, errorx.NewCodeError(400, "用户名或密码不能为空")
 	}
@@ -36,6 +36,11 @@ func (l *UserLoginLogic) UserLogin(req *types.LoginReq) (*types.LoginResp, error
 	if err != nil {
 		return nil, errorx.NewCodeError(400, "查询用户异常")
 	}
+	_, _ = l.svcCtx.Sys.LoginLogAdd(l.ctx, &sysclient.LoginLogAddReq{
+		Username: resp.Phone,
+		Status:   "1",
+		Ip:       ip,
+	})
 	return &types.LoginResp{
 		Code:             "200",
 		Message:          "登录成功",

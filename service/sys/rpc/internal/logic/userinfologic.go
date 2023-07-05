@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"epick-mall/service/sys/model"
 	"errors"
 	"fmt"
 	"strconv"
@@ -29,41 +30,20 @@ func NewUserInfoLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UserInfo
 
 func (l *UserInfoLogic) UserInfo(in *sys.InfoReq) (*sys.InfoResp, error) {
 	userInfo, err := l.svcCtx.UserModel.GetUserByID(in.UserId)
+	exist, err := l.svcCtx.UserRoleModel.IsSuperAdmin(in.UserId)
+
 	if err != nil {
 		return nil, errors.New(fmt.Sprintf("用户不存在userId: %s", strconv.FormatInt(in.UserId, 10)))
 	}
 	var list []*sys.MenuListTree
 	var listUrls []string
-	if in.UserId == 1 {
+	if exist {
 		menulist, _, _ := l.svcCtx.MenuModel.GetMenuList(&sys.MenuListReq{Name: "", Url: ""})
-		var menus []sys.MenuListData
-		for _, menu := range menulist {
-			menus = append(menus, sys.MenuListData{
-				Id:             int64(menu.ID),
-				Name:           menu.Name,
-				ParentId:       int64(menu.ParentID),
-				Url:            menu.Url,
-				Perms:          menu.Perms,
-				Type:           int64(menu.Type),
-				Icon:           menu.Icon,
-				OrderNum:       int64(menu.OrderNum),
-				CreateBy:       menu.CreateBy,
-				CreateTime:     menu.CreatedAt.Format("2006-01-02 15:04:05"),
-				LastUpdateBy:   menu.UpdateBy,
-				LastUpdateTime: menu.UpdatedAt.Format("2006-01-02 15:04:05"),
-				BackgroundUrl:  menu.BackgroundUrl,
-				VuePath:        menu.VuePath,
-				VueComponent:   menu.VueComponent,
-				VueIcon:        menu.VueIcon,
-				VueRedirect:    menu.VueRedirect,
-			})
-		}
-		list, listUrls = listTrees(&menus, list, listUrls)
+		list, listUrls = listTrees(menulist, list, listUrls)
 	} else {
 		menus, _ := l.svcCtx.MenuModel.GetMenusByUserID(in.UserId)
-		list, listUrls = listTrees(&menus, list, listUrls)
+		list, listUrls = listTrees(menus, list, listUrls)
 	}
-
 	return &sys.InfoResp{
 		Avatar:         userInfo.Avatar,
 		Nickname:       userInfo.Nickname,
@@ -73,14 +53,14 @@ func (l *UserInfoLogic) UserInfo(in *sys.InfoReq) (*sys.InfoResp, error) {
 	}, nil
 }
 
-func listTrees(menus *[]sys.MenuListData, list []*sys.MenuListTree, listUrls []string) ([]*sys.MenuListTree, []string) {
-	for _, menu := range *menus {
+func listTrees(menus []model.Menu, list []*sys.MenuListTree, listUrls []string) ([]*sys.MenuListTree, []string) {
+	for _, menu := range menus {
 		if menu.Type == 1 || menu.Type == 0 {
 			list = append(list, &sys.MenuListTree{
-				Id:           menu.Id,
+				Id:           int64(menu.ID),
 				Name:         menu.Name,
 				Icon:         menu.Icon,
-				ParentId:     menu.ParentId,
+				ParentId:     int64(menu.ParentID),
 				Path:         menu.Url,
 				VuePath:      menu.VuePath,
 				VueComponent: menu.VueComponent,

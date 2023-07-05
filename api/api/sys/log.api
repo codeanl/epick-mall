@@ -1,0 +1,54 @@
+info(
+    desc: "系统日志"
+    author: "koobe"
+    email: "1002219331@qq.com"
+)
+
+type (
+    ListSysLogReq struct {
+        PageNum int64 `json:"pageNum,default=1"`
+        PageSize int64 `json:"pageSize,default=20"`
+        Username string `json:"username,optional"`                  // 用户名
+        Method string `json:"method,optional"`                      // 请求方法
+    }
+    ListSysLogData struct {
+        Id int64 `json:"id"`                               // 编号
+        Username string `json:"username"`                  // 用户名
+        Operation string `json:"operation"`                // 用户操作
+        Method string `json:"method"`                      // 请求方法
+        Params string `json:"params"`                      // 请求参数
+        Time int64 `json:"time"`                           // 执行时长(毫秒)
+        Ip string `json:"ip"`                              // IP地址
+        Avatar string `json:"avatar"`
+    }
+    ListSysLogResp struct {
+        Code string `json:"code"`
+        Message string `json:"message"`
+        PageNum int64 `json:"pageNum,default=1"`
+        Data []*ListSysLogData `json:"data"`
+        PageSize int64 `json:"pageSize,default=20"`
+        Success bool `json:"success"`
+        Total int64 `json:"total"`
+    }
+    DeleteSysLogReq struct {
+        Ids []int64 `json:"ids"`
+    }
+    DeleteSysLogResp struct {
+        Code string `json:"code"`
+        Message string `json:"message"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: sys/log
+    prefix: /api/sys/sysLog
+)
+service api {
+    @handler SysLogList
+    post /list (ListSysLogReq) returns (ListSysLogResp)
+
+    @handler SysLogDelete
+    post /delete (DeleteSysLogReq) returns (DeleteSysLogResp)
+}
+

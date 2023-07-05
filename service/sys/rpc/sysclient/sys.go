@@ -13,31 +13,67 @@ import (
 )
 
 type (
-	InfoReq           = sys.InfoReq
-	InfoResp          = sys.InfoResp
-	LoginReq          = sys.LoginReq
-	LoginResp         = sys.LoginResp
-	MenuAddReq        = sys.MenuAddReq
-	MenuAddResp       = sys.MenuAddResp
-	MenuDeleteReq     = sys.MenuDeleteReq
-	MenuDeleteResp    = sys.MenuDeleteResp
-	MenuListData      = sys.MenuListData
-	MenuListReq       = sys.MenuListReq
-	MenuListResp      = sys.MenuListResp
-	MenuListTree      = sys.MenuListTree
-	MenuUpdateReq     = sys.MenuUpdateReq
-	MenuUpdateResp    = sys.MenuUpdateResp
-	ResetPasswordReq  = sys.ResetPasswordReq
-	ResetPasswordResp = sys.ResetPasswordResp
-	UserAddReq        = sys.UserAddReq
-	UserAddResp       = sys.UserAddResp
-	UserDeleteReq     = sys.UserDeleteReq
-	UserDeleteResp    = sys.UserDeleteResp
-	UserList          = sys.UserList
-	UserListReq       = sys.UserListReq
-	UserListResp      = sys.UserListResp
-	UserUpdateReq     = sys.UserUpdateReq
-	UserUpdateResp    = sys.UserUpdateResp
+	InfoReq               = sys.InfoReq
+	InfoResp              = sys.InfoResp
+	LogAddReq             = sys.LogAddReq
+	LogAddResp            = sys.LogAddResp
+	LoginLogAddReq        = sys.LoginLogAddReq
+	LoginLogAddResp       = sys.LoginLogAddResp
+	LoginLogDeleteReq     = sys.LoginLogDeleteReq
+	LoginLogDeleteResp    = sys.LoginLogDeleteResp
+	LoginLogListData      = sys.LoginLogListData
+	LoginLogListReq       = sys.LoginLogListReq
+	LoginLogListResp      = sys.LoginLogListResp
+	LoginReq              = sys.LoginReq
+	LoginResp             = sys.LoginResp
+	MenuAddReq            = sys.MenuAddReq
+	MenuAddResp           = sys.MenuAddResp
+	MenuDeleteReq         = sys.MenuDeleteReq
+	MenuDeleteResp        = sys.MenuDeleteResp
+	MenuListData          = sys.MenuListData
+	MenuListReq           = sys.MenuListReq
+	MenuListResp          = sys.MenuListResp
+	MenuListTree          = sys.MenuListTree
+	MenuUpdateReq         = sys.MenuUpdateReq
+	MenuUpdateResp        = sys.MenuUpdateResp
+	PlaceAddReq           = sys.PlaceAddReq
+	PlaceAddResp          = sys.PlaceAddResp
+	PlaceDeleteReq        = sys.PlaceDeleteReq
+	PlaceDeleteResp       = sys.PlaceDeleteResp
+	PlaceListData         = sys.PlaceListData
+	PlaceListReq          = sys.PlaceListReq
+	PlaceListResp         = sys.PlaceListResp
+	PlaceUpdateReq        = sys.PlaceUpdateReq
+	PlaceUpdateResp       = sys.PlaceUpdateResp
+	QueryMenuByRoleIdReq  = sys.QueryMenuByRoleIdReq
+	QueryMenuByRoleIdResp = sys.QueryMenuByRoleIdResp
+	ResetPasswordReq      = sys.ResetPasswordReq
+	ResetPasswordResp     = sys.ResetPasswordResp
+	RoleAddReq            = sys.RoleAddReq
+	RoleAddResp           = sys.RoleAddResp
+	RoleDeleteReq         = sys.RoleDeleteReq
+	RoleDeleteResp        = sys.RoleDeleteResp
+	RoleListData          = sys.RoleListData
+	RoleListReq           = sys.RoleListReq
+	RoleListResp          = sys.RoleListResp
+	RoleUpdateReq         = sys.RoleUpdateReq
+	RoleUpdateResp        = sys.RoleUpdateResp
+	SysLogDeleteReq       = sys.SysLogDeleteReq
+	SysLogDeleteResp      = sys.SysLogDeleteResp
+	SysLogListData        = sys.SysLogListData
+	SysLogListReq         = sys.SysLogListReq
+	SysLogListResp        = sys.SysLogListResp
+	UpdateMenuRoleReq     = sys.UpdateMenuRoleReq
+	UpdateMenuRoleResp    = sys.UpdateMenuRoleResp
+	UserAddReq            = sys.UserAddReq
+	UserAddResp           = sys.UserAddResp
+	UserDeleteReq         = sys.UserDeleteReq
+	UserDeleteResp        = sys.UserDeleteResp
+	UserList              = sys.UserList
+	UserListReq           = sys.UserListReq
+	UserListResp          = sys.UserListResp
+	UserUpdateReq         = sys.UserUpdateReq
+	UserUpdateResp        = sys.UserUpdateResp
 
 	Sys interface {
 		Login(ctx context.Context, in *LoginReq, opts ...grpc.CallOption) (*LoginResp, error)
@@ -47,10 +83,26 @@ type (
 		UserDelete(ctx context.Context, in *UserDeleteReq, opts ...grpc.CallOption) (*UserDeleteResp, error)
 		UserList(ctx context.Context, in *UserListReq, opts ...grpc.CallOption) (*UserListResp, error)
 		ResetPassword(ctx context.Context, in *ResetPasswordReq, opts ...grpc.CallOption) (*ResetPasswordResp, error)
+		RoleAdd(ctx context.Context, in *RoleAddReq, opts ...grpc.CallOption) (*RoleAddResp, error)
+		RoleUpdate(ctx context.Context, in *RoleUpdateReq, opts ...grpc.CallOption) (*RoleUpdateResp, error)
+		RoleDelete(ctx context.Context, in *RoleDeleteReq, opts ...grpc.CallOption) (*RoleDeleteResp, error)
+		RoleList(ctx context.Context, in *RoleListReq, opts ...grpc.CallOption) (*RoleListResp, error)
+		QueryMenuByRoleId(ctx context.Context, in *QueryMenuByRoleIdReq, opts ...grpc.CallOption) (*QueryMenuByRoleIdResp, error)
+		UpdateMenuRole(ctx context.Context, in *UpdateMenuRoleReq, opts ...grpc.CallOption) (*UpdateMenuRoleResp, error)
 		MenuAdd(ctx context.Context, in *MenuAddReq, opts ...grpc.CallOption) (*MenuAddResp, error)
 		MenuList(ctx context.Context, in *MenuListReq, opts ...grpc.CallOption) (*MenuListResp, error)
 		MenuUpdate(ctx context.Context, in *MenuUpdateReq, opts ...grpc.CallOption) (*MenuUpdateResp, error)
 		MenuDelete(ctx context.Context, in *MenuDeleteReq, opts ...grpc.CallOption) (*MenuDeleteResp, error)
+		LoginLogAdd(ctx context.Context, in *LoginLogAddReq, opts ...grpc.CallOption) (*LoginLogAddResp, error)
+		LoginLogList(ctx context.Context, in *LoginLogListReq, opts ...grpc.CallOption) (*LoginLogListResp, error)
+		LoginLogDelete(ctx context.Context, in *LoginLogDeleteReq, opts ...grpc.CallOption) (*LoginLogDeleteResp, error)
+		LogAdd(ctx context.Context, in *LogAddReq, opts ...grpc.CallOption) (*LogAddResp, error)
+		SysLogList(ctx context.Context, in *SysLogListReq, opts ...grpc.CallOption) (*SysLogListResp, error)
+		SysLogDelete(ctx context.Context, in *SysLogDeleteReq, opts ...grpc.CallOption) (*SysLogDeleteResp, error)
+		PlaceAdd(ctx context.Context, in *PlaceAddReq, opts ...grpc.CallOption) (*PlaceAddResp, error)
+		PlaceList(ctx context.Context, in *PlaceListReq, opts ...grpc.CallOption) (*PlaceListResp, error)
+		PlaceUpdate(ctx context.Context, in *PlaceUpdateReq, opts ...grpc.CallOption) (*PlaceUpdateResp, error)
+		PlaceDelete(ctx context.Context, in *PlaceDeleteReq, opts ...grpc.CallOption) (*PlaceDeleteResp, error)
 	}
 
 	defaultSys struct {
@@ -99,6 +151,36 @@ func (m *defaultSys) ResetPassword(ctx context.Context, in *ResetPasswordReq, op
 	return client.ResetPassword(ctx, in, opts...)
 }
 
+func (m *defaultSys) RoleAdd(ctx context.Context, in *RoleAddReq, opts ...grpc.CallOption) (*RoleAddResp, error) {
+	client := sys.NewSysClient(m.cli.Conn())
+	return client.RoleAdd(ctx, in, opts...)
+}
+
+func (m *defaultSys) RoleUpdate(ctx context.Context, in *RoleUpdateReq, opts ...grpc.CallOption) (*RoleUpdateResp, error) {
+	client := sys.NewSysClient(m.cli.Conn())
+	return client.RoleUpdate(ctx, in, opts...)
+}
+
+func (m *defaultSys) RoleDelete(ctx context.Context, in *RoleDeleteReq, opts ...grpc.CallOption) (*RoleDeleteResp, error) {
+	client := sys.NewSysClient(m.cli.Conn())
+	return client.RoleDelete(ctx, in, opts...)
+}
+
+func (m *defaultSys) RoleList(ctx context.Context, in *RoleListReq, opts ...grpc.CallOption) (*RoleListResp, error) {
+	client := sys.NewSysClient(m.cli.Conn())
+	return client.RoleList(ctx, in, opts...)
+}
+
+func (m *defaultSys) QueryMenuByRoleId(ctx context.Context, in *QueryMenuByRoleIdReq, opts ...grpc.CallOption) (*QueryMenuByRoleIdResp, error) {
+	client := sys.NewSysClient(m.cli.Conn())
+	return client.QueryMenuByRoleId(ctx, in, opts...)
+}
+
+func (m *defaultSys) UpdateMenuRole(ctx context.Context, in *UpdateMenuRoleReq, opts ...grpc.CallOption) (*UpdateMenuRoleResp, error) {
+	client := sys.NewSysClient(m.cli.Conn())
+	return client.UpdateMenuRole(ctx, in, opts...)
+}
+
 func (m *defaultSys) MenuAdd(ctx context.Context, in *MenuAddReq, opts ...grpc.CallOption) (*MenuAddResp, error) {
 	client := sys.NewSysClient(m.cli.Conn())
 	return client.MenuAdd(ctx, in, opts...)
@@ -117,4 +199,54 @@ func (m *defaultSys) MenuUpdate(ctx context.Context, in *MenuUpdateReq, opts ...
 func (m *defaultSys) MenuDelete(ctx context.Context, in *MenuDeleteReq, opts ...grpc.CallOption) (*MenuDeleteResp, error) {
 	client := sys.NewSysClient(m.cli.Conn())
 	return client.MenuDelete(ctx, in, opts...)
+}
+
+func (m *defaultSys) LoginLogAdd(ctx context.Context, in *LoginLogAddReq, opts ...grpc.CallOption) (*LoginLogAddResp, error) {
+	client := sys.NewSysClient(m.cli.Conn())
+	return client.LoginLogAdd(ctx, in, opts...)
+}
+
+func (m *defaultSys) LoginLogList(ctx context.Context, in *LoginLogListReq, opts ...grpc.CallOption) (*LoginLogListResp, error) {
+	client := sys.NewSysClient(m.cli.Conn())
+	return client.LoginLogList(ctx, in, opts...)
+}
+
+func (m *defaultSys) LoginLogDelete(ctx context.Context, in *LoginLogDeleteReq, opts ...grpc.CallOption) (*LoginLogDeleteResp, error) {
+	client := sys.NewSysClient(m.cli.Conn())
+	return client.LoginLogDelete(ctx, in, opts...)
+}
+
+func (m *defaultSys) LogAdd(ctx context.Context, in *LogAddReq, opts ...grpc.CallOption) (*LogAddResp, error) {
+	client := sys.NewSysClient(m.cli.Conn())
+	return client.LogAdd(ctx, in, opts...)
+}
+
+func (m *defaultSys) SysLogList(ctx context.Context, in *SysLogListReq, opts ...grpc.CallOption) (*SysLogListResp, error) {
+	client := sys.NewSysClient(m.cli.Conn())
+	return client.SysLogList(ctx, in, opts...)
+}
+
+func (m *defaultSys) SysLogDelete(ctx context.Context, in *SysLogDeleteReq, opts ...grpc.CallOption) (*SysLogDeleteResp, error) {
+	client := sys.NewSysClient(m.cli.Conn())
+	return client.SysLogDelete(ctx, in, opts...)
+}
+
+func (m *defaultSys) PlaceAdd(ctx context.Context, in *PlaceAddReq, opts ...grpc.CallOption) (*PlaceAddResp, error) {
+	client := sys.NewSysClient(m.cli.Conn())
+	return client.PlaceAdd(ctx, in, opts...)
+}
+
+func (m *defaultSys) PlaceList(ctx context.Context, in *PlaceListReq, opts ...grpc.CallOption) (*PlaceListResp, error) {
+	client := sys.NewSysClient(m.cli.Conn())
+	return client.PlaceList(ctx, in, opts...)
+}
+
+func (m *defaultSys) PlaceUpdate(ctx context.Context, in *PlaceUpdateReq, opts ...grpc.CallOption) (*PlaceUpdateResp, error) {
+	client := sys.NewSysClient(m.cli.Conn())
+	return client.PlaceUpdate(ctx, in, opts...)
+}
+
+func (m *defaultSys) PlaceDelete(ctx context.Context, in *PlaceDeleteReq, opts ...grpc.CallOption) (*PlaceDeleteResp, error) {
+	client := sys.NewSysClient(m.cli.Conn())
+	return client.PlaceDelete(ctx, in, opts...)
 }

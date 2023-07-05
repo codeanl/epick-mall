@@ -24,10 +24,10 @@ type (
 		Phone    string `json:"phone" gorm:"type:varchar(191);comment:手机号;not null"`    //手机号
 		Nickname string `json:"nickname" gorm:"type:varchar(191);comment:昵称;not null"`  //昵称
 		Password string `json:"password" gorm:"type:varchar(191);comment:密码;not null"`  //密码
-		Gender   int    `json:"gender" gorm:"type:int;comment:性别;not null"`             //性别  0--保密 1--男  2--女
+		Gender   string `json:"gender" gorm:"type:varchar(255);comment:性别;"`            //性别  0--保密 1--男  2--女
 		Avatar   string `json:"avatar" gorm:"type:varchar(255);comment:用户头像"`           //头像
 		Email    string `json:"email" gorm:"type:varchar(255);comment:邮箱"`              //邮箱
-		Status   int    `json:"status" gorm:"type:int;comment:状态;not null;default:0"`   //状态  0--正常 1--禁用 默认正常
+		Status   string `json:"status" gorm:"type:varchar(255);comment:状态;"`            //状态  0--正常 1--禁用 默认正常
 	}
 )
 
@@ -90,10 +90,10 @@ func (m *defaultUserModel) GetUserList(in *sys.UserListReq) ([]*User, int64, err
 	if in.Email != "" {
 		db = db.Where("email LIKE ?", fmt.Sprintf("%%%s%%", in.Email))
 	}
-	if in.Status != 0 {
+	if in.Status != "" {
 		db = db.Where("status = ?", fmt.Sprintf("%%%s%%", in.Status))
 	}
-	if in.Gender != 0 {
+	if in.Gender != "" {
 		db = db.Where("gender = ?", fmt.Sprintf("%%%s%%", in.Gender))
 	}
 	var total int64

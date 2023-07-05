@@ -2,6 +2,8 @@ package logic
 
 import (
 	"context"
+	"epick-mall/service/sys/model"
+	"errors"
 
 	"epick-mall/service/sys/rpc/internal/svc"
 	"epick-mall/service/sys/rpc/sys"
@@ -24,7 +26,26 @@ func NewMenuAddLogic(ctx context.Context, svcCtx *svc.ServiceContext) *MenuAddLo
 }
 
 func (l *MenuAddLogic) MenuAdd(in *sys.MenuAddReq) (*sys.MenuAddResp, error) {
-	// todo: add your logic here and delete this line
+	menu := &model.Menu{
+		Name:          in.Name,
+		ParentID:      int(in.ParentId),
+		Url:           in.Url,
+		Perms:         in.Perms,
+		Type:          int(in.Type),
+		Icon:          in.Icon,
+		OrderNum:      int(in.OrderNum),
+		CreateBy:      in.CreateBy,
+		BackgroundUrl: in.BackgroundUrl,
+		VuePath:       in.VuePath,
+		VueComponent:  in.VueComponent,
+		VueIcon:       in.VueIcon,
+		VueRedirect:   in.VueRedirect,
+	}
+	err := l.svcCtx.MenuModel.AddMenu(menu)
+	if err != nil {
+		return nil, errors.New("添加菜单失败")
+	}
+	return &sys.MenuAddResp{}, nil
 
 	return &sys.MenuAddResp{}, nil
 }

@@ -51,6 +51,8 @@ func (l *UserListLogic) UserList(req *types.ListUserReq) (*types.ListUserResp, e
 			Status:     item.Status,
 			CreateTime: item.CreatTime,
 			UpdateTime: item.UpdateTime,
+			RoleID:     item.RoleId,
+			RoleName:   item.RoleName,
 		}
 		list = append(list, &listUserData)
 	}

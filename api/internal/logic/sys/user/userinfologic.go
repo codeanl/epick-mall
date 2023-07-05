@@ -29,7 +29,6 @@ func NewUserInfoLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UserInfo
 }
 
 func (l *UserInfoLogic) UserInfo() (*types.UserInfoResp, error) {
-	// 这里的key和生成jwt token时传入的key一致
 	userId, _ := l.ctx.Value("id").(json.Number).Int64()
 	resp, err := l.svcCtx.Sys.UserInfo(l.ctx, &sysclient.InfoReq{
 		UserId: userId,
@@ -67,11 +66,9 @@ func (l *UserInfoLogic) UserInfo() (*types.UserInfoResp, error) {
 				},
 			})
 		}
-
 	}
 	//把能访问的url存在在redis，在middleware中检验
 	err = l.svcCtx.Redis.Set(strconv.FormatInt(userId, 10), strings.Join(resp.BackgroundUrls, ","))
-
 	if err != nil {
 		logx.Errorf("设置用户：%s,权限到redis异常: %+v", resp.Nickname, err)
 	}

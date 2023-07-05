@@ -18,7 +18,7 @@ func UserLoginHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 		}
 
 		l := logic.NewUserLoginLogic(r.Context(), svcCtx)
-		resp, err := l.UserLogin(&req)
+		resp, err := l.UserLogin(&req, httpx.GetRemoteAddr(r))
 		if err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 		} else {

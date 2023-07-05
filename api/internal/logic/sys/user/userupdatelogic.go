@@ -32,8 +32,8 @@ func (l *UserUpdateLogic) UserUpdate(req *types.UpdateUserReq) (resp *types.Upda
 		Phone:      req.Phone,
 		Nickname:   req.Nickname,
 		Gender:     req.Gender,
-		Avatar:     req.Avatar,
 		Email:      req.Email,
+		Status:     req.Status,
 		LastEditBy: l.ctx.Value("nickname").(string),
 		RoleId:     req.RoleID,
 	})

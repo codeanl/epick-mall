@@ -37,7 +37,7 @@ func (l *LoginLogic) Login(in *sys.LoginReq) (*sys.LoginResp, error) {
 	now := time.Now().Unix()
 	accessExpire := l.svcCtx.Config.JWT.AccessExpire
 	accessSecret := l.svcCtx.Config.JWT.AccessSecret
-	AccessToken, err := common.GetJwtToken(accessSecret, now, accessExpire, int64(userInfo.ID), userInfo.Phone, userInfo.Nickname)
+	AccessToken, err := common.GetJwtToken(accessSecret, now, accessExpire, int64(userInfo.ID), userInfo.Username, userInfo.Nickname)
 	if err != nil {
 		return nil, err
 	}
@@ -49,7 +49,7 @@ func (l *LoginLogic) Login(in *sys.LoginReq) (*sys.LoginResp, error) {
 		Avatar:           userInfo.Avatar,
 		Phone:            userInfo.Phone,
 		CurrentAuthority: "admin",
-		Gender:           int64(userInfo.Gender),
+		Gender:           userInfo.Gender,
 		Status:           "ok",
 		AccessToken:      AccessToken,
 		AccessExpire:     now + accessExpire,

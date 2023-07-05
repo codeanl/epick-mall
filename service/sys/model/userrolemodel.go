@@ -8,6 +8,9 @@ type (
 	UserRoleModel interface {
 		AddUserRole(userrole *UserRole) (err error)
 		UpdateUserRole(userrole *UserRole) error
+		DeleteByUserID(userid int64) error
+		GetUserRoleByUserID(userid int64) (*UserRole, error)
+		IsSuperAdmin(userid int64) (exist bool, err error)
 	}
 	defaultUserRoleModel struct {
 		conn *gorm.DB
@@ -37,4 +40,22 @@ func (m *defaultUserRoleModel) AddUserRole(userrole *UserRole) (err error) {
 func (m *defaultUserRoleModel) UpdateUserRole(userrole *UserRole) error {
 	err := m.conn.Model(&UserRole{}).Where("user_id = ?", userrole.UserID).Updates(userrole).Error
 	return err
+}
+func (m *defaultUserRoleModel) DeleteByUserID(userid int64) error {
+	var userrole *UserRole
+	err := m.conn.Model(&UserRole{}).Where("user_id = ?", userid).Delete(&userrole).Error
+	return err
+}
+func (m *defaultUserRoleModel) GetUserRoleByUserID(userid int64) (*UserRole, error) {
+	var userrole *UserRole
+	err := m.conn.Model(&UserRole{}).Where("user_id = ?", userid).Find(&userrole).Error
+	return userrole, err
+}
+func (m *defaultUserRoleModel) IsSuperAdmin(userid int64) (exist bool, err error) {
+	var count int64
+	err = m.conn.Model(&UserRole{}).Where("user_id=? && role_id=?", userid, 1).Count(&count).Error
+	if count == 0 {
+		return false, err
+	}
+	return true, nil
 }
