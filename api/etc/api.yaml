@@ -9,6 +9,11 @@ SysRpc:
       - localhost:2379
     Key: sys.rpc
 
+SmsRpc:
+  Etcd:
+    Hosts:
+      - localhost:2379
+    Key: sms.rpc
 
 # mysql配置
 Mysql:

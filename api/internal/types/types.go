@@ -458,3 +458,175 @@ type ListPlaceResp struct {
 	PageNum  int64            `json:"pageNum,default=1"`
 	PageSize int64            `json:"pageSize,default=20"`
 }
+
+type AddCouponReq struct {
+	Type         string  `json:"type"` // 优惠券类型；0->全场赠券；1->会员赠券；2->购物赠券；3->注册赠券
+	Name         string  `json:"name"`
+	Platform     string  `json:"platform"` // 使用平台：0->全部；1->移动；2->PC
+	Count        int64   `json:"count"`    // 数量
+	Amount       float64 `json:"amount"`   // 金额
+	PerLimit     int64   `json:"perLimit"` // 每人限领张数
+	MinPoint     float64 `json:"minPoint"` // 使用门槛；0表示无门槛
+	StartTime    string  `json:"startTime"`
+	EndTime      string  `json:"endTime"`
+	UseType      string  `json:"useType"`      // 使用类型：0->全场通用；1->指定分类；2->指定商品
+	Note         string  `json:"note"`         // 备注
+	PublishCount int64   `json:"publishCount"` // 发行数量
+	EnableTime   string  `json:"enableTime"`   // 可以领取的日期
+	Code         string  `json:"code"`         // 优惠码
+}
+
+type AddCouponResp struct {
+	Code    string `json:"code"`
+	Message string `json:"message"`
+}
+
+type ListCouponReq struct {
+	Current   int64  `json:"current,default=1"`
+	PageSize  int64  `json:"pageSize,default=20"`
+	Type      string `json:"type,default=4"` // 优惠券类型；0->全场赠券；1->会员赠券；2->购物赠券；3->注册赠券
+	Name      string `json:"name,optional"`
+	Platform  string `json:"platform,default=3"` // 使用平台：0->全部；1->移动；2->PC
+	StartTime string `json:"startTime,optional"`
+	EndTime   string `json:"endTime,optional"`
+	UseType   string `json:"useType,default=3"` // 使用类型：0->全场通用；1->指定分类；2->指定商品
+}
+
+type ListCouponData struct {
+	Id           int64   `json:"id"`
+	Type         string  `json:"type"` // 优惠券类型；0->全场赠券；1->会员赠券；2->购物赠券；3->注册赠券
+	Name         string  `json:"name"`
+	Platform     string  `json:"platform"` // 使用平台：0->全部；1->移动；2->PC
+	Count        int64   `json:"count"`    // 数量
+	Amount       float64 `json:"amount"`   // 金额
+	PerLimit     int64   `json:"perLimit"` // 每人限领张数
+	MinPoint     float64 `json:"minPoint"` // 使用门槛；0表示无门槛
+	StartTime    string  `json:"startTime"`
+	EndTime      string  `json:"endTime"`
+	UseType      string  `json:"useType"`      // 使用类型：0->全场通用；1->指定分类；2->指定商品
+	Note         string  `json:"note"`         // 备注
+	PublishCount int64   `json:"publishCount"` // 发行数量
+	UseCount     int64   `json:"useCount"`     // 已使用数量
+	ReceiveCount int64   `json:"receiveCount"` // 领取数量
+	EnableTime   string  `json:"enableTime"`   // 可以领取的日期
+	Code         string  `json:"code"`         // 优惠码
+}
+
+type ListCouponResp struct {
+	Code     string            `json:"code"`
+	Message  string            `json:"message"`
+	Current  int64             `json:"current,default=1"`
+	Data     []*ListCouponData `json:"data"`
+	PageSize int64             `json:"pageSize,default=20"`
+	Total    int64             `json:"total"`
+}
+
+type UpdateCouponReq struct {
+	Id           int64   `json:"id"`
+	Type         string  `json:"type"` // 优惠券类型；0->全场赠券；1->会员赠券；2->购物赠券；3->注册赠券
+	Name         string  `json:"name"`
+	Platform     string  `json:"platform"` // 使用平台：0->全部；1->移动；2->PC
+	Count        int64   `json:"count"`    // 数量
+	Amount       float64 `json:"amount"`   // 金额
+	PerLimit     int64   `json:"perLimit"` // 每人限领张数
+	MinPoint     float64 `json:"minPoint"` // 使用门槛；0表示无门槛
+	StartTime    string  `json:"startTime"`
+	EndTime      string  `json:"endTime"`
+	UseType      string  `json:"useType"`      // 使用类型：0->全场通用；1->指定分类；2->指定商品
+	Note         string  `json:"note"`         // 备注
+	PublishCount int64   `json:"publishCount"` // 发行数量
+	EnableTime   string  `json:"enableTime"`   // 可以领取的日期
+	Code         string  `json:"code"`         // 优惠码
+}
+
+type UpdateCouponResp struct {
+	Code    string `json:"code"`
+	Message string `json:"message"`
+}
+
+type DeleteCouponReq struct {
+	Ids []int64 `json:"ids"`
+}
+
+type DeleteCouponResp struct {
+	Code    string `json:"code"`
+	Message string `json:"message"`
+}
+
+type AddHomeAdvertiseReq struct {
+	Name      string `json:"name"`          // 名称
+	Type      string `json:"type"`          // 轮播位置：0->PC首页轮播；1->app首页轮播
+	Pic       string `json:"pic,optional"`  // 图片地址
+	StartTime string `json:"startTime"`     // 开始时间
+	EndTime   string `json:"endTime"`       // 结束时间
+	Status    string `json:"status"`        // 上下线状态：0->下线；1->上线
+	Url       string `json:"url"`           // 链接地址
+	Note      string `json:"note,optional"` // 备注
+	Sort      int64  `json:"sort"`          // 排序
+}
+
+type AddHomeAdvertiseResp struct {
+	Code    string `json:"code"`
+	Message string `json:"message"`
+}
+
+type ListHomeAdvertiseReq struct {
+	Current   int64  `json:"current,default=1"`
+	PageSize  int64  `json:"pageSize,default=20"`
+	Name      string `json:"name,optional"`      // 名称
+	Type      string `json:"type,default=2"`     // 轮播位置：0->PC首页轮播；1->app首页轮播
+	StartTime string `json:"startTime,optional"` // 开始时间
+	EndTime   string `json:"endTime,optional"`   // 结束时间
+	Status    string `json:"status,default=2"`   // 上下线状态：0->下线；1->上线
+}
+
+type ListHomeAdvertiseData struct {
+	Id         int64  `json:"id"`
+	Name       string `json:"name"`       // 名称
+	Type       string `json:"type"`       // 轮播位置：0->PC首页轮播；1->app首页轮播
+	Pic        string `json:"pic"`        // 图片地址
+	StartTime  string `json:"startTime"`  // 开始时间
+	EndTime    string `json:"endTime"`    // 结束时间
+	Status     string `json:"status"`     // 上下线状态：0->下线；1->上线
+	ClickCount int64  `json:"clickCount"` // 点击数
+	OrderCount int64  `json:"orderCount"` // 下单数
+	Url        string `json:"url"`        // 链接地址
+	Note       string `json:"note"`       // 备注
+	Sort       int64  `json:"sort"`       // 排序
+}
+
+type ListHomeAdvertiseResp struct {
+	Code     string                   `json:"code"`
+	Message  string                   `json:"message"`
+	Current  int64                    `json:"current,default=1"`
+	Data     []*ListHomeAdvertiseData `json:"data"`
+	PageSize int64                    `json:"pageSize,default=20"`
+	Total    int64                    `json:"total"`
+}
+
+type UpdateHomeAdvertiseReq struct {
+	Id        int64  `json:"id"`
+	Name      string `json:"name"`          // 名称
+	Type      string `json:"type"`          // 轮播位置：0->PC首页轮播；1->app首页轮播
+	Pic       string `json:"pic,optional"`  // 图片地址
+	StartTime string `json:"startTime"`     // 开始时间
+	EndTime   string `json:"endTime"`       // 结束时间
+	Status    string `json:"status"`        // 上下线状态：0->下线；1->上线
+	Url       string `json:"url"`           // 链接地址
+	Note      string `json:"note,optional"` // 备注
+	Sort      int64  `json:"sort"`          // 排序
+}
+
+type UpdateHomeAdvertiseResp struct {
+	Code    string `json:"code"`
+	Message string `json:"message"`
+}
+
+type DeleteHomeAdvertiseReq struct {
+	Ids []int64 `json:"ids"`
+}
+
+type DeleteHomeAdvertiseResp struct {
+	Code    string `json:"code"`
+	Message string `json:"message"`
+}

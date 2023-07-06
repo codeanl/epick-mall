@@ -4,6 +4,8 @@ package handler
 import (
 	"net/http"
 
+	smscoupon "epick-mall/api/internal/handler/sms/coupon"
+	smshomeadvertise "epick-mall/api/internal/handler/sms/homeadvertise"
 	syslog "epick-mall/api/internal/handler/sys/log"
 	sysloginlog "epick-mall/api/internal/handler/sys/loginlog"
 	sysmenu "epick-mall/api/internal/handler/sys/menu"
@@ -191,5 +193,59 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		},
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 		rest.WithPrefix("/api/sys/place"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/add",
+				Handler: smscoupon.CouponAddHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/update",
+				Handler: smscoupon.CouponUpdateHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/delete",
+				Handler: smscoupon.CouponDeleteHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/list",
+				Handler: smscoupon.CouponListHandler(serverCtx),
+			},
+		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/api/sms/coupon"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/add",
+				Handler: smshomeadvertise.HomeAdvertiseAddHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/list",
+				Handler: smshomeadvertise.HomeAdvertiseListHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/update",
+				Handler: smshomeadvertise.HomeAdvertiseUpdateHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/delete",
+				Handler: smshomeadvertise.HomeAdvertiseDeleteHandler(serverCtx),
+			},
+		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/api/sms/homeadvertise"),
 	)
 }

@@ -5,6 +5,9 @@ import "sys/loginlog.api"
 import "sys/log.api"
 import "sys/place.api"
 
+import "sms/coupon.api"
+import "sms/home_advertise.api"
+
 info(
 	title: "type title here"
 	desc: "type desc here"
