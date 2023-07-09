@@ -1,0 +1,69 @@
+info(
+    desc: "退货原因"
+    author: "koobe"
+    email: "1002219331@qq.com"
+)
+
+type (
+    addReturnResonReq struct {
+        Name string `json:"name"`         // 退货类型
+        Sort int64 `json:"sort"`
+    }
+    addReturnResonResp struct {
+        Code string `json:"code"`
+        Message string `json:"message"`
+    }
+    ListReturnResonReq struct {
+        Current int64 `json:"current,default=1"`
+        PageSize int64 `json:"pageSize,default=20"`
+        Name string `json:"name,optional"`             // 退货类型
+    }
+    ListReturnResonData struct {
+        Id int64 `json:"id"`
+        Name string `json:"name"`             // 退货类型
+        Sort int64 `json:"sort"`
+    }
+    ListReturnResonResp struct {
+        Code string `json:"code"`
+        Message string `json:"message"`
+        Current int64 `json:"current,default=1"`
+        Data []*ListReturnResonData `json:"data"`
+        PageSize int64 `json:"pageSize,default=20"`
+        Total int64 `json:"total"`
+    }
+    UpdateReturnResonReq struct {
+        Id int64 `json:"id"`
+        Name string `json:"name"`         // 退货类型
+        Sort int64 `json:"sort"`
+    }
+    UpdateReturnResonResp struct {
+        Code string `json:"code"`
+        Message string `json:"message"`
+    }
+    DeleteReturnResonReq struct {
+        Ids []int64 `json:"ids"`
+    }
+    DeleteReturnResonResp struct {
+        Code string `json:"code"`
+        Message string `json:"message"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: oms/returnreason
+    prefix: /api/order/returnreason
+)
+service api {
+    @handler ReturnResonAdd
+    post /add (addReturnResonReq) returns (addReturnResonResp)
+
+    @handler ReturnResonList
+    post /list (ListReturnResonReq) returns (ListReturnResonResp)
+
+    @handler ReturnResonUpdate
+    post /update (UpdateReturnResonReq) returns (UpdateReturnResonResp)
+
+    @handler ReturnResonDelete
+    post /delete (DeleteReturnResonReq) returns (DeleteReturnResonResp)
+}

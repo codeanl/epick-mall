@@ -42,3 +42,98 @@ func (s *PmsServer) ProductDelete(ctx context.Context, in *pms.ProductDeleteReq)
 	l := logic.NewProductDeleteLogic(ctx, s.svcCtx)
 	return l.ProductDelete(in)
 }
+
+func (s *PmsServer) BrandAdd(ctx context.Context, in *pms.BrandAddReq) (*pms.BrandAddResp, error) {
+	l := logic.NewBrandAddLogic(ctx, s.svcCtx)
+	return l.BrandAdd(in)
+}
+
+func (s *PmsServer) BrandList(ctx context.Context, in *pms.BrandListReq) (*pms.BrandListResp, error) {
+	l := logic.NewBrandListLogic(ctx, s.svcCtx)
+	return l.BrandList(in)
+}
+
+func (s *PmsServer) BrandListByIds(ctx context.Context, in *pms.BrandListByIdsReq) (*pms.BrandListResp, error) {
+	l := logic.NewBrandListByIdsLogic(ctx, s.svcCtx)
+	return l.BrandListByIds(in)
+}
+
+func (s *PmsServer) BrandUpdate(ctx context.Context, in *pms.BrandUpdateReq) (*pms.BrandUpdateResp, error) {
+	l := logic.NewBrandUpdateLogic(ctx, s.svcCtx)
+	return l.BrandUpdate(in)
+}
+
+func (s *PmsServer) BrandDelete(ctx context.Context, in *pms.BrandDeleteReq) (*pms.BrandDeleteResp, error) {
+	l := logic.NewBrandDeleteLogic(ctx, s.svcCtx)
+	return l.BrandDelete(in)
+}
+
+func (s *PmsServer) ProductCategoryAdd(ctx context.Context, in *pms.ProductCategoryAddReq) (*pms.ProductCategoryAddResp, error) {
+	l := logic.NewProductCategoryAddLogic(ctx, s.svcCtx)
+	return l.ProductCategoryAdd(in)
+}
+
+func (s *PmsServer) ProductCategoryList(ctx context.Context, in *pms.ProductCategoryListReq) (*pms.ProductCategoryListResp, error) {
+	l := logic.NewProductCategoryListLogic(ctx, s.svcCtx)
+	return l.ProductCategoryList(in)
+}
+
+func (s *PmsServer) ProductCategoryFirstList(ctx context.Context, in *pms.ProductCategoryFirstListReq) (*pms.ProductCategoryListResp, error) {
+	l := logic.NewProductCategoryFirstListLogic(ctx, s.svcCtx)
+	return l.ProductCategoryFirstList(in)
+}
+
+func (s *PmsServer) ProductCategorySecondList(ctx context.Context, in *pms.ProductCategorySecondListReq) (*pms.ProductCategoryListResp, error) {
+	l := logic.NewProductCategorySecondListLogic(ctx, s.svcCtx)
+	return l.ProductCategorySecondList(in)
+}
+
+func (s *PmsServer) ProductCategoryUpdate(ctx context.Context, in *pms.ProductCategoryUpdateReq) (*pms.ProductCategoryUpdateResp, error) {
+	l := logic.NewProductCategoryUpdateLogic(ctx, s.svcCtx)
+	return l.ProductCategoryUpdate(in)
+}
+
+func (s *PmsServer) ProductCategoryDelete(ctx context.Context, in *pms.ProductCategoryDeleteReq) (*pms.ProductCategoryDeleteResp, error) {
+	l := logic.NewProductCategoryDeleteLogic(ctx, s.svcCtx)
+	return l.ProductCategoryDelete(in)
+}
+
+func (s *PmsServer) AttributeAdd(ctx context.Context, in *pms.ProductAttributeAddReq) (*pms.ProductAttributeAddResp, error) {
+	l := logic.NewAttributeAddLogic(ctx, s.svcCtx)
+	return l.AttributeAdd(in)
+}
+
+func (s *PmsServer) AttributeList(ctx context.Context, in *pms.ProductAttributeListReq) (*pms.ProductAttributeListResp, error) {
+	l := logic.NewAttributeListLogic(ctx, s.svcCtx)
+	return l.AttributeList(in)
+}
+
+func (s *PmsServer) AttributeUpdate(ctx context.Context, in *pms.ProductAttributeUpdateReq) (*pms.ProductAttributeUpdateResp, error) {
+	l := logic.NewAttributeUpdateLogic(ctx, s.svcCtx)
+	return l.AttributeUpdate(in)
+}
+
+func (s *PmsServer) AttributeDelete(ctx context.Context, in *pms.ProductAttributeDeleteReq) (*pms.ProductAttributeDeleteResp, error) {
+	l := logic.NewAttributeDeleteLogic(ctx, s.svcCtx)
+	return l.AttributeDelete(in)
+}
+
+func (s *PmsServer) AttributeCategoryAdd(ctx context.Context, in *pms.ProductAttributeCategoryAddReq) (*pms.ProductAttributeCategoryAddResp, error) {
+	l := logic.NewAttributeCategoryAddLogic(ctx, s.svcCtx)
+	return l.AttributeCategoryAdd(in)
+}
+
+func (s *PmsServer) AttributeCategoryList(ctx context.Context, in *pms.ProductAttributeCategoryListReq) (*pms.ProductAttributeCategoryListResp, error) {
+	l := logic.NewAttributeCategoryListLogic(ctx, s.svcCtx)
+	return l.AttributeCategoryList(in)
+}
+
+func (s *PmsServer) AttributeCategoryUpdate(ctx context.Context, in *pms.ProductAttributeCategoryUpdateReq) (*pms.ProductAttributeCategoryUpdateResp, error) {
+	l := logic.NewAttributeCategoryUpdateLogic(ctx, s.svcCtx)
+	return l.AttributeCategoryUpdate(in)
+}
+
+func (s *PmsServer) AttributeCategoryDelete(ctx context.Context, in *pms.ProductAttributeCategoryDeleteReq) (*pms.ProductAttributeCategoryDeleteResp, error) {
+	l := logic.NewAttributeCategoryDeleteLogic(ctx, s.svcCtx)
+	return l.AttributeCategoryDelete(in)
+}

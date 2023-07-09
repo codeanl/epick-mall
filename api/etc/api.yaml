@@ -14,7 +14,16 @@ SmsRpc:
     Hosts:
       - localhost:2379
     Key: sms.rpc
-
+PmsRpc:
+  Etcd:
+    Hosts:
+      - localhost:2379
+    Key: pms.rpc
+OmsRpc:
+  Etcd:
+    Hosts:
+      - localhost:2379
+    Key: oms.rpc
 # mysql配置
 Mysql:
   DataSource: root:12345678@(127.0.0.1:3306)/epick-shop?charset=utf8mb4&parseTime=True&loc=Asia%2FShanghai

@@ -1,0 +1,245 @@
+syntax = "proto3";
+
+package oms;
+
+option go_package = "./oms";
+
+message OrderAddReq {
+  int64       PlaceId = 45;
+  int64       MemberId = 2;
+  int64       CouponId = 3;
+  string      OrderSn = 4;
+  string   CreateTime = 5;
+  string      MemberUsername = 6;
+  double     TotalAmount = 7;
+  double     PayAmount = 8;
+  double     FreightAmount = 9;
+  double     PromotionAmount = 10;
+  double     IntegrationAmount = 11;
+  double     CouponAmount = 12;
+  double     DiscountAmount = 13;
+  string       PayType = 14;
+  string       SourceType = 15;
+  string       Status = 16;
+  string       OrderType = 17;
+  string      DeliveryCompany = 18;
+  string      DeliverySn = 19;
+  int64       AutoConfirmDay = 20;
+  int64       Integration = 21;
+  int64       Growth = 22;
+  string      PromotionInfo = 23;
+  string       BillType = 24;
+  string      BillHeader = 25;
+  string      BillContent = 26;
+  string      BillReceiverPhone = 27;
+  string      BillReceiverEmail = 28;
+  string      ReceiverName = 29;
+  string      ReceiverPhone = 30;
+  string      ReceiverPostCode = 31;
+  string      ReceiverProvince = 32;
+  string      ReceiverCity = 33;
+  string      ReceiverRegion = 34;
+  string      ReceiverDetailAddress = 35;
+  string      Note = 36;
+  string       ConfirmStatus = 37;
+  string       DeleteStatus = 38;
+  int64       UseIntegration = 39;
+  string   PaymentTime = 40;
+  string   DeliveryTime = 41;
+  string   ReceiveTime = 42;
+  string   CommentTime = 43;
+  string   ModifyTime = 44;
+}
+
+message OrderAddResp {
+  string pong = 1;
+}
+
+message OrderUpdateReq {
+  int64       Id = 1;
+  int64       PlaceId = 45;
+  int64       MemberId = 2;
+  int64       CouponId = 3;
+  string      OrderSn = 4;
+  string   CreateTime = 5;
+  string      MemberUsername = 6;
+  double     TotalAmount = 7;
+  double     PayAmount = 8;
+  double     FreightAmount = 9;
+  double     PromotionAmount = 10;
+  double     IntegrationAmount = 11;
+  double     CouponAmount = 12;
+  double     DiscountAmount = 13;
+  string       PayType = 14;
+  string       SourceType = 15;
+  string       Status = 16;
+  string       OrderType = 17;
+  string      DeliveryCompany = 18;
+  string      DeliverySn = 19;
+  int64       AutoConfirmDay = 20;
+  int64       Integration = 21;
+  int64       Growth = 22;
+  string      PromotionInfo = 23;
+  string       BillType = 24;
+  string      BillHeader = 25;
+  string      BillContent = 26;
+  string      BillReceiverPhone = 27;
+  string      BillReceiverEmail = 28;
+  string      ReceiverName = 29;
+  string      ReceiverPhone = 30;
+  string      ReceiverPostCode = 31;
+  string      ReceiverProvince = 32;
+  string      ReceiverCity = 33;
+  string      ReceiverRegion = 34;
+  string      ReceiverDetailAddress = 35;
+  string      Note = 36;
+  string       ConfirmStatus = 37;
+  string       DeleteStatus = 38;
+  int64       UseIntegration = 39;
+  string   PaymentTime = 40;
+  string   DeliveryTime = 41;
+  string   ReceiveTime = 42;
+  string   CommentTime = 43;
+  string   ModifyTime = 44;
+}
+
+message OrderUpdateResp {
+  string pong = 1;
+}
+message OrderDeleteReq {
+  int64 UserId = 1;
+  int64 OrderId = 2;
+}
+
+message OrderDeleteResp {
+  string pong = 1;
+}
+
+message OrderListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+  string      OrderSn = 3;
+  string      MemberUsername = 4;
+  string       PayType = 5;
+  string       SourceType = 6;
+  string       Status = 7;
+  string       OrderType = 8;
+}
+
+message OrderListData{
+  int64       Id = 1;
+  int64       PlaceId = 45;
+  int64       MemberId = 2;
+  int64       CouponId = 3;
+  string      OrderSn = 4;
+  string   CreateTime = 5;
+  string      MemberUsername = 6;
+  double     TotalAmount = 7;
+  double     PayAmount = 8;
+  double     FreightAmount = 9;
+  double     PromotionAmount = 10;
+  double     IntegrationAmount = 11;
+  double     CouponAmount = 12;
+  double     DiscountAmount = 13;
+  string       PayType = 14;
+  string       SourceType = 15;
+  string       Status = 16;
+  string       OrderType = 17;
+  string      DeliveryCompany = 18;
+  string      DeliverySn = 19;
+  int64       AutoConfirmDay = 20;
+  int64       Integration = 21;
+  int64       Growth = 22;
+  string      PromotionInfo = 23;
+  string       BillType = 24;
+  string      BillHeader = 25;
+  string      BillContent = 26;
+  string      BillReceiverPhone = 27;
+  string      BillReceiverEmail = 28;
+  string      ReceiverName = 29;
+  string      ReceiverPhone = 30;
+  string      ReceiverPostCode = 31;
+  string      ReceiverProvince = 32;
+  string      ReceiverCity = 33;
+  string      ReceiverRegion = 34;
+  string      ReceiverDetailAddress = 35;
+  string      Note = 36;
+  string       ConfirmStatus = 37;
+  string       DeleteStatus = 38;
+  int64       UseIntegration = 39;
+  string   PaymentTime = 40;
+  string   DeliveryTime = 41;
+  string   ReceiveTime = 42;
+  string   CommentTime = 43;
+  string   ModifyTime = 44;
+}
+message OrderListResp {
+  int64 total = 1;
+  repeated  OrderListData list = 2;
+}
+
+
+message OrderReturnReasonAddReq {
+  string    	Name= 2;
+  int64     	Sort      = 3;
+}
+
+message OrderReturnReasonAddResp {
+  string pong = 1;
+}
+
+message OrderReturnReasonListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+  string  Name= 3;
+}
+
+message OrderReturnReasonListData{
+  int64     	Id  = 1;
+  string    	Name= 2;
+  int64     	Sort      = 3;
+}
+
+message OrderReturnReasonListResp {
+  int64 total = 1;
+  repeated  OrderReturnReasonListData list = 2;
+}
+
+message OrderReturnReasonUpdateReq {
+  int64     	Id  = 1;
+  string    	Name= 2;
+  int64     	Sort      = 3;
+}
+
+message OrderReturnReasonUpdateResp {
+  string pong = 1;
+}
+
+message OrderReturnReasonDeleteReq {
+  repeated int64 ids = 1;
+}
+
+message OrderReturnReasonDeleteResp {
+  string pong = 1;
+}
+
+
+
+
+
+service Oms {
+  rpc OrderAdd(OrderAddReq) returns(OrderAddResp);
+  rpc OrderList(OrderListReq) returns(OrderListResp);
+  rpc OrderUpdate(OrderUpdateReq) returns(OrderUpdateResp);
+  rpc OrderDelete(OrderDeleteReq) returns(OrderDeleteResp);
+//  rpc OrderListByMemberId(OrderListByMemberIdReq) returns(OrderListByMemberIdResp);
+//  rpc OrderCancel(OrderCancelReq) returns(OrderCancelResp);
+//  rpc OrderConfirm(OrderConfirmReq) returns(OrderConfirmResp);
+//  rpc OrderRefund(OrderRefundReq) returns(OrderRefundResp);
+
+
+  rpc OrderReturnReasonAdd(OrderReturnReasonAddReq) returns(OrderReturnReasonAddResp);
+  rpc OrderReturnReasonList(OrderReturnReasonListReq) returns(OrderReturnReasonListResp);
+  rpc OrderReturnReasonUpdate(OrderReturnReasonUpdateReq) returns(OrderReturnReasonUpdateResp);
+  rpc OrderReturnReasonDelete(OrderReturnReasonDeleteReq) returns(OrderReturnReasonDeleteResp);
+}

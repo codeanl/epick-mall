@@ -18,8 +18,8 @@ message ProductAddReq {
   string       PublishStatus = 10;
   string       NewStatus = 11;
   string       RecommandStatus = 12;
-  string       Sort = 14;
-  string       Sale = 15;
+  int64       Sort = 14;
+  int64       Sale = 15;
   double     Price = 16;
   double     PromotionPrice = 17;
   int64       GiftGrowth = 18;
@@ -65,8 +65,8 @@ message ProductUpdateReq {
   string       PublishStatus = 10;
   string       NewStatus = 11;
   string       RecommandStatus = 12;
-  string       Sort = 14;
-  string       Sale = 15;
+  int64       Sort = 14;
+  int64       Sale = 15;
   double     Price = 16;
   double     PromotionPrice = 17;
   int64       GiftGrowth = 18;
@@ -125,8 +125,8 @@ message ProductListData{
   string       PublishStatus = 10;
   string       NewStatus = 11;
   string       RecommandStatus = 12;
-  string       Sort = 14;
-  string       Sale = 15;
+  int64       Sort = 14;
+  int64       Sale = 15;
   double     Price = 16;
   double     PromotionPrice = 17;
   int64       GiftGrowth = 18;
@@ -160,6 +160,268 @@ message ProductListResp {
   int64 total = 1;
   repeated  ProductListData list = 2;
 }
+//---------------------------------
+message BrandAddReq {
+  string  Name = 2;
+  string  FirstLetter = 3;
+  int64    Sort = 4;
+  string    FactoryStatus = 5;
+  string    ShowStatus = 6;
+  int64    ProductCount = 7;
+  int64    ProductCommentCount = 8;
+  string  Logo = 9;
+  string  BigPic = 10;
+  string  BrandStory = 11;
+}
+
+message BrandAddResp {
+  string pong = 1;
+}
+message BrandListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+  string  Name = 3;
+  string    FactoryStatus = 4;
+  string    ShowStatus = 5;
+}
+
+message BrandListByIdsReq {
+  repeated int64 ids = 1;
+}
+message BrandListData{
+  int64    Id = 1;
+  string  Name = 2;
+  string  FirstLetter = 3;
+  int64    Sort = 4;
+  string    FactoryStatus = 5;
+  string    ShowStatus = 6;
+  int64    ProductCount = 7;
+  int64    ProductCommentCount = 8;
+  string  Logo = 9;
+  string  BigPic = 10;
+  string  BrandStory = 11;
+}
+message BrandListResp {
+  int64 total = 1;
+  repeated  BrandListData list = 2;
+}
+message BrandUpdateReq {
+  int64    Id = 1;
+  string  Name = 2;
+  string  FirstLetter = 3;
+  int64    Sort = 4;
+  string    FactoryStatus = 5;
+  string    ShowStatus = 6;
+  int64    ProductCount = 7;
+  int64    ProductCommentCount = 8;
+  string  Logo = 9;
+  string  BigPic = 10;
+  string  BrandStory = 11;
+}
+
+message BrandUpdateResp {
+  string pong = 1;
+}
+
+message BrandDeleteReq {
+  repeated int64 ids = 1;
+}
+
+message BrandDeleteResp {
+  string pong = 1;
+}
+message ProductCategoryAddReq {
+  int64    ParentId = 2;
+  string  Name = 3;
+  string    Level = 4;
+  int64    ProductCount = 5;
+  string  ProductUnit = 6;
+  string    NavStatus = 7;
+  string    ShowStatus = 8;
+  int64    Sort = 9;
+  string  Icon = 10;
+  string  Keywords = 11;
+  string  Description = 12;
+}
+
+message ProductCategoryAddResp {
+  string pong = 1;
+}
+message ProductCategoryFirstListReq {
+  int64 ParentId = 1;
+}
+
+message ProductCategorySecondListReq {
+  int64 ParentId = 1;
+}
+message ProductCategoryListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+  string  Name = 3;
+  int64 ParentId = 4;
+}
+
+message ProductCategoryListData{
+  int64    Id = 1;
+  int64    ParentId = 2;
+  string  Name = 3;
+  string    Level = 4;
+  int64    ProductCount = 5;
+  string  ProductUnit = 6;
+  string    NavStatus = 7;
+  string    ShowStatus = 8;
+  int64    Sort = 9;
+  string  Icon = 10;
+  string  Keywords = 11;
+  string  Description = 12;
+}
+message ProductCategoryListResp {
+  int64 total = 1;
+  repeated  ProductCategoryListData list = 2;
+}
+message ProductCategoryUpdateReq {
+  int64    Id = 1;
+  int64    ParentId = 2;
+  string  Name = 3;
+  string    Level = 4;
+  int64    ProductCount = 5;
+  string  ProductUnit = 6;
+  string    NavStatus = 7;
+  string    ShowStatus = 8;
+  int64    Sort = 9;
+  string  Icon = 10;
+  string  Keywords = 11;
+  string  Description = 12;
+}
+
+message ProductCategoryUpdateResp {
+  string pong = 1;
+}
+message ProductCategoryDeleteReq {
+  repeated int64 ids = 1;
+}
+
+message ProductCategoryDeleteResp {
+  string pong = 1;
+}
+message ProductAttributeAddReq {
+  int64    ProductAttributeCategoryId = 2;
+  string  Name = 3;
+  string    SelectType = 4;
+  string    InputType = 5;
+  string  InputList = 6;
+  int64    Sort = 7;
+  string    FilterType = 8;
+  string    SearchType = 9;
+  string    RelatedStatus = 10;
+  string    HandAddStatus = 11;
+  string    Type = 12;
+}
+
+message ProductAttributeAddResp {
+  string pong = 1;
+}
+message ProductAttributeListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+  string  Name = 3;
+  string   Type = 4;
+  int64    ProductAttributeCategoryId = 5;
+}
+
+message ProductAttributeListData{
+  int64    Id = 1;
+  int64    ProductAttributeCategoryId = 2;
+  string  Name = 3;
+  string    SelectType = 4;
+  string    InputType = 5;
+  string  InputList = 6;
+  int64    Sort = 7;
+  string    FilterType = 8;
+  string    SearchType = 9;
+  string    RelatedStatus = 10;
+  string    HandAddStatus = 11;
+  string    Type = 12;
+
+}
+
+message ProductAttributeListResp {
+  int64 total = 1;
+  repeated  ProductAttributeListData list = 2;
+}
+message ProductAttributeUpdateReq {
+  int64    Id = 1;
+  int64    ProductAttributeCategoryId = 2;
+  string  Name = 3;
+  string    SelectType = 4;
+  string    InputType = 5;
+  string  InputList = 6;
+  int64    Sort = 7;
+  string    FilterType = 8;
+  string    SearchType = 9;
+  string    RelatedStatus = 10;
+  string    HandAddStatus = 11;
+  string    Type = 12;
+}
+
+message ProductAttributeUpdateResp {
+  string pong = 1;
+}
+message ProductAttributeDeleteReq {
+  repeated int64 ids = 1;
+}
+
+message ProductAttributeDeleteResp {
+  string pong = 1;
+}
+
+message ProductAttributeCategoryAddReq {
+  string  Name = 1;
+}
+
+message ProductAttributeCategoryAddResp {
+  string pong = 1;
+}
+
+message ProductAttributeCategoryListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+  string  Name = 3;
+}
+
+message ProductAttributeCategoryListData{
+  int64    Id = 1;
+  string  Name = 2;
+  int64    AttributeCount = 3;
+  int64    ParamCount = 4;
+
+}
+
+message ProductAttributeCategoryListResp {
+  int64 total = 1;
+  repeated  ProductAttributeCategoryListData list = 2;
+}
+
+message ProductAttributeCategoryUpdateReq {
+  int64    Id = 1;
+  string  Name = 2;
+  int64    AttributeCount = 3;
+  int64    ParamCount = 4;
+}
+
+message ProductAttributeCategoryUpdateResp {
+  string pong = 1;
+}
+
+message ProductAttributeCategoryDeleteReq {
+  repeated int64 ids = 1;
+}
+
+message ProductAttributeCategoryDeleteResp {
+  string pong = 1;
+}
+
+
 
 
 
@@ -171,4 +433,29 @@ service Pms {
   rpc ProductDelete(ProductDeleteReq) returns(ProductDeleteResp);
 //  rpc ProductDetailById(ProductDetailByIdReq) returns(ProductDetailByIdResp);
 //  rpc ProductListByCategoryId(ProductListByCategoryIdReq) returns(ProductListByCategoryIdResp);
+
+
+  rpc BrandAdd(BrandAddReq) returns(BrandAddResp);
+  rpc BrandList(BrandListReq) returns(BrandListResp);
+  rpc BrandListByIds(BrandListByIdsReq) returns(BrandListResp);
+  rpc BrandUpdate(BrandUpdateReq) returns(BrandUpdateResp);
+  rpc BrandDelete(BrandDeleteReq) returns(BrandDeleteResp);
+
+  rpc ProductCategoryAdd(ProductCategoryAddReq) returns(ProductCategoryAddResp);
+  rpc ProductCategoryList(ProductCategoryListReq) returns(ProductCategoryListResp);
+  rpc ProductCategoryFirstList(ProductCategoryFirstListReq) returns(ProductCategoryListResp);
+  rpc ProductCategorySecondList(ProductCategorySecondListReq) returns(ProductCategoryListResp);
+  rpc ProductCategoryUpdate(ProductCategoryUpdateReq) returns(ProductCategoryUpdateResp);
+  rpc ProductCategoryDelete(ProductCategoryDeleteReq) returns(ProductCategoryDeleteResp);
+
+
+  rpc AttributeAdd(ProductAttributeAddReq) returns(ProductAttributeAddResp);
+  rpc AttributeList(ProductAttributeListReq) returns(ProductAttributeListResp);
+  rpc AttributeUpdate(ProductAttributeUpdateReq) returns(ProductAttributeUpdateResp);
+  rpc AttributeDelete(ProductAttributeDeleteReq) returns(ProductAttributeDeleteResp);
+
+  rpc AttributeCategoryAdd(ProductAttributeCategoryAddReq) returns(ProductAttributeCategoryAddResp);
+  rpc AttributeCategoryList(ProductAttributeCategoryListReq) returns(ProductAttributeCategoryListResp);
+  rpc AttributeCategoryUpdate(ProductAttributeCategoryUpdateReq) returns(ProductAttributeCategoryUpdateResp);
+  rpc AttributeCategoryDelete(ProductAttributeCategoryDeleteReq) returns(ProductAttributeCategoryDeleteResp);
 }

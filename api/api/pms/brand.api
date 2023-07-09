@@ -1,0 +1,93 @@
+info(
+    desc: "商品品牌"
+    author: "koobe"
+    email: "1002219331@qq.com"
+)
+
+type (
+    addProductBrandReq struct {
+        Name string `json:"name"`
+        FirstLetter string `json:"firstLetter"`                // 首字母
+        Sort int64 `json:"sort"`
+        FactoryStatus string `json:"factoryStatus"`             // 是否为品牌制造商：0->不是；1->是
+        ShowStatus string `json:"showStatus"`
+        Logo string `json:"logo"`                              // 品牌logo
+        BigPic string `json:"bigPic"`                          // 专区大图
+        BrandStory string `json:"brandStory"`                  // 品牌故事
+    }
+    addProductBrandResp struct {
+        Code string `json:"code"`
+        Message string `json:"message"`
+    }
+    ListProductBrandReq struct {
+        Current int64 `json:"current,default=1"`
+        PageSize int64 `json:"pageSize,default=20"`
+        Name   string `json:"name,optional"`
+        FactoryStatus string `json:"factoryStatus,default=2"`                // 是否为品牌制造商：0->不是；1->是
+        ShowStatus string `json:"showStatus,default=2"`
+    }
+    ListProductBrandData struct {
+        Id int64 `json:"id"`
+        Name string `json:"name"`
+        FirstLetter string `json:"firstLetter"`                   // 首字母
+        Sort int64 `json:"sort"`
+        FactoryStatus string `json:"factoryStatus"`                // 是否为品牌制造商：0->不是；1->是
+        ShowStatus string `json:"showStatus"`
+        ProductCount int64 `json:"productCount"`                  // 产品数量
+        ProductCommentCount int64 `json:"productCommentCount"`    // 产品评论数量
+        Logo string `json:"logo"`                                 // 品牌logo
+        BigPic string `json:"bigPic"`                             // 专区大图
+        BrandStory string `json:"brandStory"`                     // 品牌故事
+    }
+    ListProductBrandResp struct {
+        Current int64 `json:"current,default=1"`
+        Data []*ListProductBrandData `json:"data"`
+        PageSize int64 `json:"pageSize,default=20"`
+        Total int64 `json:"total"`
+        Code string `json:"code"`
+        Message string `json:"message"`
+    }
+    UpdateProductBrandReq struct {
+        Id int64 `json:"id"`
+        Name string `json:"name"`
+        FirstLetter string `json:"firstLetter"`                // 首字母
+        Sort int64 `json:"sort"`
+        FactoryStatus string `json:"factoryStatus"`             // 是否为品牌制造商：0->不是；1->是
+        ShowStatus string `json:"showStatus"`
+        ProductCount int64 `json:"productCount"`               // 产品数量
+        ProductCommentCount int64 `json:"productCommentCount"` // 产品评论数量
+        Logo string `json:"logo"`                              // 品牌logo
+        BigPic string `json:"bigPic"`                          // 专区大图
+        BrandStory string `json:"brandStory"`                  // 品牌故事
+    }
+    UpdateProductBrandResp struct {
+        Code string `json:"code"`
+        Message string `json:"message"`
+    }
+    DeleteProductBrandReq struct {
+        Ids []int64 `json:"ids"`
+    }
+    DeleteProductBrandResp struct {
+        Code string `json:"code"`
+        Message string `json:"message"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: pms/brand
+    prefix: /api/product/brand
+)
+service api {
+    @handler BrandAdd
+    post /add (addProductBrandReq) returns (addProductBrandResp)
+
+    @handler BrandList
+    post /list (ListProductBrandReq) returns (ListProductBrandResp)
+
+    @handler BrandUpdate
+    post /update (UpdateProductBrandReq) returns (UpdateProductBrandResp)
+
+    @handler BrandDelete
+    post /delete (DeleteProductBrandReq) returns (DeleteProductBrandResp)
+}

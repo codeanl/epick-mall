@@ -8,6 +8,15 @@ import "sys/place.api"
 import "sms/coupon.api"
 import "sms/home_advertise.api"
 
+import "pms/brand.api"
+import "pms/product.api"
+import "pms/category.api"
+import "pms/attribute.api"
+import "pms/attribute_category.api"
+
+import "oms/order.api"
+import "oms/return_reason.api"
+
 info(
 	title: "type title here"
 	desc: "type desc here"

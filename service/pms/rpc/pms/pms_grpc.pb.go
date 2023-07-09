@@ -19,10 +19,29 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Pms_ProductAdd_FullMethodName    = "/pms.Pms/ProductAdd"
-	Pms_ProductList_FullMethodName   = "/pms.Pms/ProductList"
-	Pms_ProductUpdate_FullMethodName = "/pms.Pms/ProductUpdate"
-	Pms_ProductDelete_FullMethodName = "/pms.Pms/ProductDelete"
+	Pms_ProductAdd_FullMethodName                = "/pms.Pms/ProductAdd"
+	Pms_ProductList_FullMethodName               = "/pms.Pms/ProductList"
+	Pms_ProductUpdate_FullMethodName             = "/pms.Pms/ProductUpdate"
+	Pms_ProductDelete_FullMethodName             = "/pms.Pms/ProductDelete"
+	Pms_BrandAdd_FullMethodName                  = "/pms.Pms/BrandAdd"
+	Pms_BrandList_FullMethodName                 = "/pms.Pms/BrandList"
+	Pms_BrandListByIds_FullMethodName            = "/pms.Pms/BrandListByIds"
+	Pms_BrandUpdate_FullMethodName               = "/pms.Pms/BrandUpdate"
+	Pms_BrandDelete_FullMethodName               = "/pms.Pms/BrandDelete"
+	Pms_ProductCategoryAdd_FullMethodName        = "/pms.Pms/ProductCategoryAdd"
+	Pms_ProductCategoryList_FullMethodName       = "/pms.Pms/ProductCategoryList"
+	Pms_ProductCategoryFirstList_FullMethodName  = "/pms.Pms/ProductCategoryFirstList"
+	Pms_ProductCategorySecondList_FullMethodName = "/pms.Pms/ProductCategorySecondList"
+	Pms_ProductCategoryUpdate_FullMethodName     = "/pms.Pms/ProductCategoryUpdate"
+	Pms_ProductCategoryDelete_FullMethodName     = "/pms.Pms/ProductCategoryDelete"
+	Pms_AttributeAdd_FullMethodName              = "/pms.Pms/AttributeAdd"
+	Pms_AttributeList_FullMethodName             = "/pms.Pms/AttributeList"
+	Pms_AttributeUpdate_FullMethodName           = "/pms.Pms/AttributeUpdate"
+	Pms_AttributeDelete_FullMethodName           = "/pms.Pms/AttributeDelete"
+	Pms_AttributeCategoryAdd_FullMethodName      = "/pms.Pms/AttributeCategoryAdd"
+	Pms_AttributeCategoryList_FullMethodName     = "/pms.Pms/AttributeCategoryList"
+	Pms_AttributeCategoryUpdate_FullMethodName   = "/pms.Pms/AttributeCategoryUpdate"
+	Pms_AttributeCategoryDelete_FullMethodName   = "/pms.Pms/AttributeCategoryDelete"
 )
 
 // PmsClient is the client API for Pms service.
@@ -34,6 +53,25 @@ type PmsClient interface {
 	// rpc ProductListByIds(ProductByIdsReq) returns(ProductListResp);
 	ProductUpdate(ctx context.Context, in *ProductUpdateReq, opts ...grpc.CallOption) (*ProductUpdateResp, error)
 	ProductDelete(ctx context.Context, in *ProductDeleteReq, opts ...grpc.CallOption) (*ProductDeleteResp, error)
+	BrandAdd(ctx context.Context, in *BrandAddReq, opts ...grpc.CallOption) (*BrandAddResp, error)
+	BrandList(ctx context.Context, in *BrandListReq, opts ...grpc.CallOption) (*BrandListResp, error)
+	BrandListByIds(ctx context.Context, in *BrandListByIdsReq, opts ...grpc.CallOption) (*BrandListResp, error)
+	BrandUpdate(ctx context.Context, in *BrandUpdateReq, opts ...grpc.CallOption) (*BrandUpdateResp, error)
+	BrandDelete(ctx context.Context, in *BrandDeleteReq, opts ...grpc.CallOption) (*BrandDeleteResp, error)
+	ProductCategoryAdd(ctx context.Context, in *ProductCategoryAddReq, opts ...grpc.CallOption) (*ProductCategoryAddResp, error)
+	ProductCategoryList(ctx context.Context, in *ProductCategoryListReq, opts ...grpc.CallOption) (*ProductCategoryListResp, error)
+	ProductCategoryFirstList(ctx context.Context, in *ProductCategoryFirstListReq, opts ...grpc.CallOption) (*ProductCategoryListResp, error)
+	ProductCategorySecondList(ctx context.Context, in *ProductCategorySecondListReq, opts ...grpc.CallOption) (*ProductCategoryListResp, error)
+	ProductCategoryUpdate(ctx context.Context, in *ProductCategoryUpdateReq, opts ...grpc.CallOption) (*ProductCategoryUpdateResp, error)
+	ProductCategoryDelete(ctx context.Context, in *ProductCategoryDeleteReq, opts ...grpc.CallOption) (*ProductCategoryDeleteResp, error)
+	AttributeAdd(ctx context.Context, in *ProductAttributeAddReq, opts ...grpc.CallOption) (*ProductAttributeAddResp, error)
+	AttributeList(ctx context.Context, in *ProductAttributeListReq, opts ...grpc.CallOption) (*ProductAttributeListResp, error)
+	AttributeUpdate(ctx context.Context, in *ProductAttributeUpdateReq, opts ...grpc.CallOption) (*ProductAttributeUpdateResp, error)
+	AttributeDelete(ctx context.Context, in *ProductAttributeDeleteReq, opts ...grpc.CallOption) (*ProductAttributeDeleteResp, error)
+	AttributeCategoryAdd(ctx context.Context, in *ProductAttributeCategoryAddReq, opts ...grpc.CallOption) (*ProductAttributeCategoryAddResp, error)
+	AttributeCategoryList(ctx context.Context, in *ProductAttributeCategoryListReq, opts ...grpc.CallOption) (*ProductAttributeCategoryListResp, error)
+	AttributeCategoryUpdate(ctx context.Context, in *ProductAttributeCategoryUpdateReq, opts ...grpc.CallOption) (*ProductAttributeCategoryUpdateResp, error)
+	AttributeCategoryDelete(ctx context.Context, in *ProductAttributeCategoryDeleteReq, opts ...grpc.CallOption) (*ProductAttributeCategoryDeleteResp, error)
 }
 
 type pmsClient struct {
@@ -80,6 +118,177 @@ func (c *pmsClient) ProductDelete(ctx context.Context, in *ProductDeleteReq, opt
 	return out, nil
 }
 
+func (c *pmsClient) BrandAdd(ctx context.Context, in *BrandAddReq, opts ...grpc.CallOption) (*BrandAddResp, error) {
+	out := new(BrandAddResp)
+	err := c.cc.Invoke(ctx, Pms_BrandAdd_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pmsClient) BrandList(ctx context.Context, in *BrandListReq, opts ...grpc.CallOption) (*BrandListResp, error) {
+	out := new(BrandListResp)
+	err := c.cc.Invoke(ctx, Pms_BrandList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pmsClient) BrandListByIds(ctx context.Context, in *BrandListByIdsReq, opts ...grpc.CallOption) (*BrandListResp, error) {
+	out := new(BrandListResp)
+	err := c.cc.Invoke(ctx, Pms_BrandListByIds_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pmsClient) BrandUpdate(ctx context.Context, in *BrandUpdateReq, opts ...grpc.CallOption) (*BrandUpdateResp, error) {
+	out := new(BrandUpdateResp)
+	err := c.cc.Invoke(ctx, Pms_BrandUpdate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pmsClient) BrandDelete(ctx context.Context, in *BrandDeleteReq, opts ...grpc.CallOption) (*BrandDeleteResp, error) {
+	out := new(BrandDeleteResp)
+	err := c.cc.Invoke(ctx, Pms_BrandDelete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pmsClient) ProductCategoryAdd(ctx context.Context, in *ProductCategoryAddReq, opts ...grpc.CallOption) (*ProductCategoryAddResp, error) {
+	out := new(ProductCategoryAddResp)
+	err := c.cc.Invoke(ctx, Pms_ProductCategoryAdd_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pmsClient) ProductCategoryList(ctx context.Context, in *ProductCategoryListReq, opts ...grpc.CallOption) (*ProductCategoryListResp, error) {
+	out := new(ProductCategoryListResp)
+	err := c.cc.Invoke(ctx, Pms_ProductCategoryList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pmsClient) ProductCategoryFirstList(ctx context.Context, in *ProductCategoryFirstListReq, opts ...grpc.CallOption) (*ProductCategoryListResp, error) {
+	out := new(ProductCategoryListResp)
+	err := c.cc.Invoke(ctx, Pms_ProductCategoryFirstList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pmsClient) ProductCategorySecondList(ctx context.Context, in *ProductCategorySecondListReq, opts ...grpc.CallOption) (*ProductCategoryListResp, error) {
+	out := new(ProductCategoryListResp)
+	err := c.cc.Invoke(ctx, Pms_ProductCategorySecondList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pmsClient) ProductCategoryUpdate(ctx context.Context, in *ProductCategoryUpdateReq, opts ...grpc.CallOption) (*ProductCategoryUpdateResp, error) {
+	out := new(ProductCategoryUpdateResp)
+	err := c.cc.Invoke(ctx, Pms_ProductCategoryUpdate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pmsClient) ProductCategoryDelete(ctx context.Context, in *ProductCategoryDeleteReq, opts ...grpc.CallOption) (*ProductCategoryDeleteResp, error) {
+	out := new(ProductCategoryDeleteResp)
+	err := c.cc.Invoke(ctx, Pms_ProductCategoryDelete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pmsClient) AttributeAdd(ctx context.Context, in *ProductAttributeAddReq, opts ...grpc.CallOption) (*ProductAttributeAddResp, error) {
+	out := new(ProductAttributeAddResp)
+	err := c.cc.Invoke(ctx, Pms_AttributeAdd_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pmsClient) AttributeList(ctx context.Context, in *ProductAttributeListReq, opts ...grpc.CallOption) (*ProductAttributeListResp, error) {
+	out := new(ProductAttributeListResp)
+	err := c.cc.Invoke(ctx, Pms_AttributeList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pmsClient) AttributeUpdate(ctx context.Context, in *ProductAttributeUpdateReq, opts ...grpc.CallOption) (*ProductAttributeUpdateResp, error) {
+	out := new(ProductAttributeUpdateResp)
+	err := c.cc.Invoke(ctx, Pms_AttributeUpdate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pmsClient) AttributeDelete(ctx context.Context, in *ProductAttributeDeleteReq, opts ...grpc.CallOption) (*ProductAttributeDeleteResp, error) {
+	out := new(ProductAttributeDeleteResp)
+	err := c.cc.Invoke(ctx, Pms_AttributeDelete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pmsClient) AttributeCategoryAdd(ctx context.Context, in *ProductAttributeCategoryAddReq, opts ...grpc.CallOption) (*ProductAttributeCategoryAddResp, error) {
+	out := new(ProductAttributeCategoryAddResp)
+	err := c.cc.Invoke(ctx, Pms_AttributeCategoryAdd_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pmsClient) AttributeCategoryList(ctx context.Context, in *ProductAttributeCategoryListReq, opts ...grpc.CallOption) (*ProductAttributeCategoryListResp, error) {
+	out := new(ProductAttributeCategoryListResp)
+	err := c.cc.Invoke(ctx, Pms_AttributeCategoryList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pmsClient) AttributeCategoryUpdate(ctx context.Context, in *ProductAttributeCategoryUpdateReq, opts ...grpc.CallOption) (*ProductAttributeCategoryUpdateResp, error) {
+	out := new(ProductAttributeCategoryUpdateResp)
+	err := c.cc.Invoke(ctx, Pms_AttributeCategoryUpdate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pmsClient) AttributeCategoryDelete(ctx context.Context, in *ProductAttributeCategoryDeleteReq, opts ...grpc.CallOption) (*ProductAttributeCategoryDeleteResp, error) {
+	out := new(ProductAttributeCategoryDeleteResp)
+	err := c.cc.Invoke(ctx, Pms_AttributeCategoryDelete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PmsServer is the server API for Pms service.
 // All implementations must embed UnimplementedPmsServer
 // for forward compatibility
@@ -89,6 +298,25 @@ type PmsServer interface {
 	// rpc ProductListByIds(ProductByIdsReq) returns(ProductListResp);
 	ProductUpdate(context.Context, *ProductUpdateReq) (*ProductUpdateResp, error)
 	ProductDelete(context.Context, *ProductDeleteReq) (*ProductDeleteResp, error)
+	BrandAdd(context.Context, *BrandAddReq) (*BrandAddResp, error)
+	BrandList(context.Context, *BrandListReq) (*BrandListResp, error)
+	BrandListByIds(context.Context, *BrandListByIdsReq) (*BrandListResp, error)
+	BrandUpdate(context.Context, *BrandUpdateReq) (*BrandUpdateResp, error)
+	BrandDelete(context.Context, *BrandDeleteReq) (*BrandDeleteResp, error)
+	ProductCategoryAdd(context.Context, *ProductCategoryAddReq) (*ProductCategoryAddResp, error)
+	ProductCategoryList(context.Context, *ProductCategoryListReq) (*ProductCategoryListResp, error)
+	ProductCategoryFirstList(context.Context, *ProductCategoryFirstListReq) (*ProductCategoryListResp, error)
+	ProductCategorySecondList(context.Context, *ProductCategorySecondListReq) (*ProductCategoryListResp, error)
+	ProductCategoryUpdate(context.Context, *ProductCategoryUpdateReq) (*ProductCategoryUpdateResp, error)
+	ProductCategoryDelete(context.Context, *ProductCategoryDeleteReq) (*ProductCategoryDeleteResp, error)
+	AttributeAdd(context.Context, *ProductAttributeAddReq) (*ProductAttributeAddResp, error)
+	AttributeList(context.Context, *ProductAttributeListReq) (*ProductAttributeListResp, error)
+	AttributeUpdate(context.Context, *ProductAttributeUpdateReq) (*ProductAttributeUpdateResp, error)
+	AttributeDelete(context.Context, *ProductAttributeDeleteReq) (*ProductAttributeDeleteResp, error)
+	AttributeCategoryAdd(context.Context, *ProductAttributeCategoryAddReq) (*ProductAttributeCategoryAddResp, error)
+	AttributeCategoryList(context.Context, *ProductAttributeCategoryListReq) (*ProductAttributeCategoryListResp, error)
+	AttributeCategoryUpdate(context.Context, *ProductAttributeCategoryUpdateReq) (*ProductAttributeCategoryUpdateResp, error)
+	AttributeCategoryDelete(context.Context, *ProductAttributeCategoryDeleteReq) (*ProductAttributeCategoryDeleteResp, error)
 	mustEmbedUnimplementedPmsServer()
 }
 
@@ -107,6 +335,63 @@ func (UnimplementedPmsServer) ProductUpdate(context.Context, *ProductUpdateReq) 
 }
 func (UnimplementedPmsServer) ProductDelete(context.Context, *ProductDeleteReq) (*ProductDeleteResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ProductDelete not implemented")
+}
+func (UnimplementedPmsServer) BrandAdd(context.Context, *BrandAddReq) (*BrandAddResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BrandAdd not implemented")
+}
+func (UnimplementedPmsServer) BrandList(context.Context, *BrandListReq) (*BrandListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BrandList not implemented")
+}
+func (UnimplementedPmsServer) BrandListByIds(context.Context, *BrandListByIdsReq) (*BrandListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BrandListByIds not implemented")
+}
+func (UnimplementedPmsServer) BrandUpdate(context.Context, *BrandUpdateReq) (*BrandUpdateResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BrandUpdate not implemented")
+}
+func (UnimplementedPmsServer) BrandDelete(context.Context, *BrandDeleteReq) (*BrandDeleteResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BrandDelete not implemented")
+}
+func (UnimplementedPmsServer) ProductCategoryAdd(context.Context, *ProductCategoryAddReq) (*ProductCategoryAddResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProductCategoryAdd not implemented")
+}
+func (UnimplementedPmsServer) ProductCategoryList(context.Context, *ProductCategoryListReq) (*ProductCategoryListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProductCategoryList not implemented")
+}
+func (UnimplementedPmsServer) ProductCategoryFirstList(context.Context, *ProductCategoryFirstListReq) (*ProductCategoryListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProductCategoryFirstList not implemented")
+}
+func (UnimplementedPmsServer) ProductCategorySecondList(context.Context, *ProductCategorySecondListReq) (*ProductCategoryListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProductCategorySecondList not implemented")
+}
+func (UnimplementedPmsServer) ProductCategoryUpdate(context.Context, *ProductCategoryUpdateReq) (*ProductCategoryUpdateResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProductCategoryUpdate not implemented")
+}
+func (UnimplementedPmsServer) ProductCategoryDelete(context.Context, *ProductCategoryDeleteReq) (*ProductCategoryDeleteResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProductCategoryDelete not implemented")
+}
+func (UnimplementedPmsServer) AttributeAdd(context.Context, *ProductAttributeAddReq) (*ProductAttributeAddResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AttributeAdd not implemented")
+}
+func (UnimplementedPmsServer) AttributeList(context.Context, *ProductAttributeListReq) (*ProductAttributeListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AttributeList not implemented")
+}
+func (UnimplementedPmsServer) AttributeUpdate(context.Context, *ProductAttributeUpdateReq) (*ProductAttributeUpdateResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AttributeUpdate not implemented")
+}
+func (UnimplementedPmsServer) AttributeDelete(context.Context, *ProductAttributeDeleteReq) (*ProductAttributeDeleteResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AttributeDelete not implemented")
+}
+func (UnimplementedPmsServer) AttributeCategoryAdd(context.Context, *ProductAttributeCategoryAddReq) (*ProductAttributeCategoryAddResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AttributeCategoryAdd not implemented")
+}
+func (UnimplementedPmsServer) AttributeCategoryList(context.Context, *ProductAttributeCategoryListReq) (*ProductAttributeCategoryListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AttributeCategoryList not implemented")
+}
+func (UnimplementedPmsServer) AttributeCategoryUpdate(context.Context, *ProductAttributeCategoryUpdateReq) (*ProductAttributeCategoryUpdateResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AttributeCategoryUpdate not implemented")
+}
+func (UnimplementedPmsServer) AttributeCategoryDelete(context.Context, *ProductAttributeCategoryDeleteReq) (*ProductAttributeCategoryDeleteResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AttributeCategoryDelete not implemented")
 }
 func (UnimplementedPmsServer) mustEmbedUnimplementedPmsServer() {}
 
@@ -193,6 +478,348 @@ func _Pms_ProductDelete_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Pms_BrandAdd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BrandAddReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PmsServer).BrandAdd(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Pms_BrandAdd_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PmsServer).BrandAdd(ctx, req.(*BrandAddReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Pms_BrandList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BrandListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PmsServer).BrandList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Pms_BrandList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PmsServer).BrandList(ctx, req.(*BrandListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Pms_BrandListByIds_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BrandListByIdsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PmsServer).BrandListByIds(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Pms_BrandListByIds_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PmsServer).BrandListByIds(ctx, req.(*BrandListByIdsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Pms_BrandUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BrandUpdateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PmsServer).BrandUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Pms_BrandUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PmsServer).BrandUpdate(ctx, req.(*BrandUpdateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Pms_BrandDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BrandDeleteReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PmsServer).BrandDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Pms_BrandDelete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PmsServer).BrandDelete(ctx, req.(*BrandDeleteReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Pms_ProductCategoryAdd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductCategoryAddReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PmsServer).ProductCategoryAdd(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Pms_ProductCategoryAdd_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PmsServer).ProductCategoryAdd(ctx, req.(*ProductCategoryAddReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Pms_ProductCategoryList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductCategoryListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PmsServer).ProductCategoryList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Pms_ProductCategoryList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PmsServer).ProductCategoryList(ctx, req.(*ProductCategoryListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Pms_ProductCategoryFirstList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductCategoryFirstListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PmsServer).ProductCategoryFirstList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Pms_ProductCategoryFirstList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PmsServer).ProductCategoryFirstList(ctx, req.(*ProductCategoryFirstListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Pms_ProductCategorySecondList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductCategorySecondListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PmsServer).ProductCategorySecondList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Pms_ProductCategorySecondList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PmsServer).ProductCategorySecondList(ctx, req.(*ProductCategorySecondListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Pms_ProductCategoryUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductCategoryUpdateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PmsServer).ProductCategoryUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Pms_ProductCategoryUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PmsServer).ProductCategoryUpdate(ctx, req.(*ProductCategoryUpdateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Pms_ProductCategoryDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductCategoryDeleteReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PmsServer).ProductCategoryDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Pms_ProductCategoryDelete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PmsServer).ProductCategoryDelete(ctx, req.(*ProductCategoryDeleteReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Pms_AttributeAdd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductAttributeAddReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PmsServer).AttributeAdd(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Pms_AttributeAdd_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PmsServer).AttributeAdd(ctx, req.(*ProductAttributeAddReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Pms_AttributeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductAttributeListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PmsServer).AttributeList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Pms_AttributeList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PmsServer).AttributeList(ctx, req.(*ProductAttributeListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Pms_AttributeUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductAttributeUpdateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PmsServer).AttributeUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Pms_AttributeUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PmsServer).AttributeUpdate(ctx, req.(*ProductAttributeUpdateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Pms_AttributeDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductAttributeDeleteReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PmsServer).AttributeDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Pms_AttributeDelete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PmsServer).AttributeDelete(ctx, req.(*ProductAttributeDeleteReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Pms_AttributeCategoryAdd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductAttributeCategoryAddReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PmsServer).AttributeCategoryAdd(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Pms_AttributeCategoryAdd_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PmsServer).AttributeCategoryAdd(ctx, req.(*ProductAttributeCategoryAddReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Pms_AttributeCategoryList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductAttributeCategoryListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PmsServer).AttributeCategoryList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Pms_AttributeCategoryList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PmsServer).AttributeCategoryList(ctx, req.(*ProductAttributeCategoryListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Pms_AttributeCategoryUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductAttributeCategoryUpdateReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PmsServer).AttributeCategoryUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Pms_AttributeCategoryUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PmsServer).AttributeCategoryUpdate(ctx, req.(*ProductAttributeCategoryUpdateReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Pms_AttributeCategoryDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductAttributeCategoryDeleteReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PmsServer).AttributeCategoryDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Pms_AttributeCategoryDelete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PmsServer).AttributeCategoryDelete(ctx, req.(*ProductAttributeCategoryDeleteReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Pms_ServiceDesc is the grpc.ServiceDesc for Pms service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -215,6 +842,82 @@ var Pms_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ProductDelete",
 			Handler:    _Pms_ProductDelete_Handler,
+		},
+		{
+			MethodName: "BrandAdd",
+			Handler:    _Pms_BrandAdd_Handler,
+		},
+		{
+			MethodName: "BrandList",
+			Handler:    _Pms_BrandList_Handler,
+		},
+		{
+			MethodName: "BrandListByIds",
+			Handler:    _Pms_BrandListByIds_Handler,
+		},
+		{
+			MethodName: "BrandUpdate",
+			Handler:    _Pms_BrandUpdate_Handler,
+		},
+		{
+			MethodName: "BrandDelete",
+			Handler:    _Pms_BrandDelete_Handler,
+		},
+		{
+			MethodName: "ProductCategoryAdd",
+			Handler:    _Pms_ProductCategoryAdd_Handler,
+		},
+		{
+			MethodName: "ProductCategoryList",
+			Handler:    _Pms_ProductCategoryList_Handler,
+		},
+		{
+			MethodName: "ProductCategoryFirstList",
+			Handler:    _Pms_ProductCategoryFirstList_Handler,
+		},
+		{
+			MethodName: "ProductCategorySecondList",
+			Handler:    _Pms_ProductCategorySecondList_Handler,
+		},
+		{
+			MethodName: "ProductCategoryUpdate",
+			Handler:    _Pms_ProductCategoryUpdate_Handler,
+		},
+		{
+			MethodName: "ProductCategoryDelete",
+			Handler:    _Pms_ProductCategoryDelete_Handler,
+		},
+		{
+			MethodName: "AttributeAdd",
+			Handler:    _Pms_AttributeAdd_Handler,
+		},
+		{
+			MethodName: "AttributeList",
+			Handler:    _Pms_AttributeList_Handler,
+		},
+		{
+			MethodName: "AttributeUpdate",
+			Handler:    _Pms_AttributeUpdate_Handler,
+		},
+		{
+			MethodName: "AttributeDelete",
+			Handler:    _Pms_AttributeDelete_Handler,
+		},
+		{
+			MethodName: "AttributeCategoryAdd",
+			Handler:    _Pms_AttributeCategoryAdd_Handler,
+		},
+		{
+			MethodName: "AttributeCategoryList",
+			Handler:    _Pms_AttributeCategoryList_Handler,
+		},
+		{
+			MethodName: "AttributeCategoryUpdate",
+			Handler:    _Pms_AttributeCategoryUpdate_Handler,
+		},
+		{
+			MethodName: "AttributeCategoryDelete",
+			Handler:    _Pms_AttributeCategoryDelete_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

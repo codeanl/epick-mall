@@ -4,6 +4,13 @@ package handler
 import (
 	"net/http"
 
+	omsorder "epick-mall/api/internal/handler/oms/order"
+	omsreturnreason "epick-mall/api/internal/handler/oms/returnreason"
+	pmsattribute "epick-mall/api/internal/handler/pms/attribute"
+	pmsattributecategory "epick-mall/api/internal/handler/pms/attributecategory"
+	pmsbrand "epick-mall/api/internal/handler/pms/brand"
+	pmscategory "epick-mall/api/internal/handler/pms/category"
+	pmsproduct "epick-mall/api/internal/handler/pms/product"
 	smscoupon "epick-mall/api/internal/handler/sms/coupon"
 	smshomeadvertise "epick-mall/api/internal/handler/sms/homeadvertise"
 	syslog "epick-mall/api/internal/handler/sys/log"
@@ -247,5 +254,194 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		},
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 		rest.WithPrefix("/api/sms/homeadvertise"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/add",
+				Handler: pmsbrand.BrandAddHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/list",
+				Handler: pmsbrand.BrandListHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/update",
+				Handler: pmsbrand.BrandUpdateHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/delete",
+				Handler: pmsbrand.BrandDeleteHandler(serverCtx),
+			},
+		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/api/product/brand"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/add",
+				Handler: pmsproduct.ProductAddHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/list",
+				Handler: pmsproduct.ProductListHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/update",
+				Handler: pmsproduct.ProductUpdateHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/delete",
+				Handler: pmsproduct.ProductDeleteHandler(serverCtx),
+			},
+		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/api/product/product"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/add",
+				Handler: pmscategory.ProductCategoryAddHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/list",
+				Handler: pmscategory.ProductCategoryListHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/update",
+				Handler: pmscategory.ProductCategoryUpdateHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/delete",
+				Handler: pmscategory.ProductCategoryDeleteHandler(serverCtx),
+			},
+		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/api/product/category"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/add",
+				Handler: pmsattribute.ProductAttributeAddHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/list",
+				Handler: pmsattribute.ProductAttributeListHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/update",
+				Handler: pmsattribute.ProductAttributeUpdateHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/delete",
+				Handler: pmsattribute.ProductAttributeDeleteHandler(serverCtx),
+			},
+		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/api/product/attribute"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/add",
+				Handler: pmsattributecategory.ProductAttributecategoryAddHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/list",
+				Handler: pmsattributecategory.ProductAttributecategoryListHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/update",
+				Handler: pmsattributecategory.ProductAttributecategoryUpdateHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/delete",
+				Handler: pmsattributecategory.ProductAttributecategoryDeleteHandler(serverCtx),
+			},
+		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/api/product/attributecategory"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/add",
+				Handler: omsorder.OrderAddHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/list",
+				Handler: omsorder.OrderListHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/update",
+				Handler: omsorder.OrderUpdateHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/delete",
+				Handler: omsorder.OrderDeleteHandler(serverCtx),
+			},
+		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/api/order/order"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/add",
+				Handler: omsreturnreason.ReturnResonAddHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/list",
+				Handler: omsreturnreason.ReturnResonListHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/update",
+				Handler: omsreturnreason.ReturnResonUpdateHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/delete",
+				Handler: omsreturnreason.ReturnResonDeleteHandler(serverCtx),
+			},
+		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/api/order/returnreason"),
 	)
 }
